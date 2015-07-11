@@ -24,7 +24,7 @@ Contributing
 
 License and Authors
 -------------------
-Author: Jacob Dearing (jacob.dearing@gmail.com)
+Author: Jacob Dearing // jacob.dearing@gmail.com
 
 ```
 The MIT License (MIT)
