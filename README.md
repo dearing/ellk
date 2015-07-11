@@ -1,6 +1,7 @@
 ELK Cookbook
 ============
 manage elasticsearch, logstash, logstash-forwarder and kibana
+
 *note: expects consumer to install java*
 
 Support and Tested
