@@ -1,5 +1,5 @@
 elasticsearch_service 'default' do
-  action [:create, :start, :enable, :restart, :stop, :delete]
+  action [:create, :start, :enable]
 end
 
 elasticsearch_config 'default' do

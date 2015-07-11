@@ -1,7 +1,6 @@
 class Chef
   class Provider
     class ElasticsearchService < Chef::Provider::LWRPBase
-      include Elasticsearch::Helpers
       use_inline_resources if defined?(use_inline_resources)
 
       provides :elasticsearch_service

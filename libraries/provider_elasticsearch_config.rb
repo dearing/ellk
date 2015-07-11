@@ -1,14 +1,13 @@
 class Chef
   class Provider
     class ElasticsearchConfig < Chef::Provider::LWRPBase
-      include Elasticsearch::Helpers
       use_inline_resources if defined?(use_inline_resources)
 
       provides :elasticsearch_config
 
       action :create do
         template '/etc/sysconfig/elasticsearch' do
-          source 'elasticsearch.sysconfig.erb'
+          source 'sysconfig/elasticsearch.sysconfig.erb'
           owner 'root'
           group 'root'
           mode '0644'
@@ -36,7 +35,7 @@ class Chef
 
         # TODO: probably better to let it source the sysconfig template instead
         template '/etc/init.d/elasticsearch' do
-          source 'elasticsearch.initd.erb'
+          source 'initd/elasticsearch.initd.erb'
           owner 'root'
           group 'root'
           mode '0755'

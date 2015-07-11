@@ -1,7 +1,6 @@
 class Chef
   class Provider
     class KibanaService < Chef::Provider::LWRPBase
-      include Kibana::Helpers
       use_inline_resources if defined?(use_inline_resources)
 
       provides :kibana_service

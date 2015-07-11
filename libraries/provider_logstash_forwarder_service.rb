@@ -1,7 +1,6 @@
 class Chef
   class Provider
     class LogstashForwarderService < Chef::Provider::LWRPBase
-      include LogstashForwarder::Helpers
       use_inline_resources if defined?(use_inline_resources)
 
       provides :logstash_forwarder_service

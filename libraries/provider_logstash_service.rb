@@ -1,7 +1,6 @@
 class Chef
   class Provider
     class LogstashService < Chef::Provider::LWRPBase
-      include Logstash::Helpers
       use_inline_resources if defined?(use_inline_resources)
 
       provides :logstash_service
