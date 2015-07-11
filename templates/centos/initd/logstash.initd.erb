@@ -26,16 +26,16 @@ fi
 name=logstash
 pidfile="/var/run/$name.pid"
 
-LS_USER=logstash
-LS_GROUP=logstash
-LS_HOME=/var/lib/logstash
-LS_HEAP_SIZE="500m"
-LS_LOG_DIR=/var/log/logstash
-LS_LOG_FILE="${LS_LOG_DIR}/$name.log"
-LS_CONF_DIR=/etc/logstash/conf.d
-LS_OPEN_FILES=16384
-LS_NICE=19
-LS_OPTS=""
+LS_USER=<%= @options['ls_user'] %>
+LS_GROUP=<%= @options['ls_group'] %>
+LS_HOME=/var/lib/<%= @options['ls_home'] %>
+LS_HEAP_SIZE=<%= @options['ls_heap_size'] %>
+LS_LOG_DIR=<%= @options['ls_log_dir'] %>
+LS_LOG_FILE=<%= @options['ls_log_file'] %>
+LS_CONF_DIR=<%= @options['ls_conf_dir'] %>
+LS_OPEN_FILES=<%= @options['ls_open_files'] %>
+LS_NICE=<%= @options['ls_nice'] %>
+LS_OPTS=<%= @options['ls_opts'] %>
 
 
 [ -r /etc/default/$name ] && . /etc/default/$name

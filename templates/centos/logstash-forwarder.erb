@@ -1,6 +1,6 @@
-user="root"
-group="root"
-chroot="/"
-chdir="/var/lib/logstash-forwarder"
-nice=""
+user=<%= @options['user'] %>
+group=<%= @options['group'] %>
+chroot=<%= @options['chroot'] %>
+chdir=<%= @options['chdir'] %>
+nice=<%= @options['nice'] %>
 
