@@ -8,7 +8,7 @@ class Chef
       actions [:create, :delete]
 
       attribute :source, kind_of: String, default: 'elk'
-      
+
       attribute :es_home, kind_of: String, default: '/usr/share/elasticsearch'
       attribute :es_user, kind_of: String, default: 'elasticsearch'
       attribute :es_group, kind_of: String, default: 'elasticsearch'
