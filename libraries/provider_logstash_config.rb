@@ -53,6 +53,14 @@ class Chef
             'ls_nice' => new_resource.ls_nice
           }
         end
+
+        template '/etc/logstash/conf.d/10-syslog.conf' do
+          source 'logstash/10-syslog.conf'
+          owner 'root'
+          group 'root'
+          mode '0644'
+          cookbook new_resource.source
+        end
       end
       action :delete do
       end
