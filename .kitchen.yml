@@ -1,0 +1,11 @@
+---
+driver_plugin: vagrant
+
+
+platforms:
+- name: centos-6.6
+
+suites:
+- name: default
+  run_list:
+  - recipe[elktest]
