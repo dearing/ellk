@@ -1,8 +1,8 @@
 ELK Cookbook
 ============
-Manage Elasticsearch, Logstash, Logstash-forwader and Kibana
+manage elasticsearch, logstash, logstash-forwarder and kibana
 
-Note: expects consumer to install java and whatever else you want
+*note: expects consumer to install java*
 
 Support and Tested
 ------------
@@ -10,7 +10,8 @@ centos66
 
 Requirements
 ------------
-- Chef 12
+- chef 12
+- some kind of java
 - see [metadata](/metadata.rb) for complexity
 
 Contributing
