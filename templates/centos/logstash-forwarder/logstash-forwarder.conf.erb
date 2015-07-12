@@ -1,8 +1,8 @@
 {
   "network": {
     "servers": [ "localhost:5043" ],
-    "ssl key": "./logstash-forwarder.key",
-    "ssl ca": "./logstash-forwarder.crt",
+    "ssl key": "<%= @options['key_location'] %>",
+    "ssl ca": "<%= @options['crt_location'] %>",
     "timeout": 15
   },
   "files": [

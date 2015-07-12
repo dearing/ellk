@@ -22,6 +22,13 @@ class Chef
       attribute :ls_conf_dir, kind_of: String, default: '/etc/logstash/conf.d'
       attribute :ls_open_files, kind_of: Integer, default: 16_384
       attribute :ls_nice, kind_of: Integer, default: 19
+
+      attribute :port, kind_of: Integer, default: 5043
+      attribute :key, kind_of: String, default: ''
+      attribute :crt, kind_of: String, default: ''
+      attribute :key_location, kind_of: String, default: '/opt/logstash/logstash.key'
+      attribute :crt_location, kind_of: String, default: '/opt/logstash/logstash.crt'
+
     end
   end
 end

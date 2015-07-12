@@ -35,6 +35,18 @@ class Chef
             'nice' => new_resource.nice
           }
         end
+
+        template '/etc/logstash-forwarder.conf' do
+          source 'logstash-forwarder/logstash-forwarder.conf.erb'
+          owner 'root'
+          group 'root'
+          mode '0644'
+          cookbook new_resource.source
+          variables options: {
+            'crt_location' => new_resource.crt_location,
+            'key_location' => new_resource.key_location
+          }
+        end
       end
 
       action :delete do

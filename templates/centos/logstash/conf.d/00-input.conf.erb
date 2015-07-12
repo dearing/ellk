@@ -1,8 +1,8 @@
 input {
   lumberjack {
-    port => 5043
+    port => "<%= @options['port'] %>"
     type => "logs"
-    ssl_certificate => "/opt/logstash-forwarder/logstash-forwarder.crt"
-    ssl_key => "/opt/logstash-forwarder/logstash-forwarder.key"
+    ssl_certificate => "<%= @options['crt_location'] %>"
+    ssl_key => "<%= @options['key_location'] %>"
   }
 }

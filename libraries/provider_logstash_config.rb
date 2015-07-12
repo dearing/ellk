@@ -28,9 +28,6 @@ class Chef
             'ls_nice' => new_resource.ls_nice
           }
         end
-      end
-
-      action :create do
         template '/etc/init.d/logstash' do
           source 'logstash/logstash.initd.erb'
           owner 'root'
@@ -52,6 +49,37 @@ class Chef
             'ls_open_files' => new_resource.ls_open_files,
             'ls_nice' => new_resource.ls_nice
           }
+        end
+
+        template "#{new_resource.ls_conf_dir}/00-input.conf" do
+          source 'logstash/conf.d/00-input.conf.erb'
+          owner 'root'
+          group 'root'
+          mode '0644'
+          cookbook new_resource.source
+          variables options: {
+            'port' => new_resource.port,
+            'key' => new_resource.key,
+            'crt' => new_resource.crt,
+            'key_location' => new_resource.key_location,
+            'crt_location' => new_resource.crt_location
+          }
+        end
+
+        template "#{new_resource.ls_conf_dir}/99-input.conf" do
+          source 'logstash/conf.d/99-output.conf.erb'
+          owner 'root'
+          group 'root'
+          mode '0644'
+          cookbook new_resource.source
+        end
+
+        template "#{new_resource.ls_conf_dir}/10-syslog.conf" do
+          source 'logstash/conf.d/10-syslog.conf.erb'
+          owner 'root'
+          group 'root'
+          mode '0644'
+          cookbook new_resource.source
         end
       end
       action :delete do
