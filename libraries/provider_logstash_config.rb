@@ -7,7 +7,7 @@ class Chef
 
       action :create do
         template '/etc/sysconfig/logstash' do
-          source 'sysconfig/logstash.sysconfig.erb'
+          source 'logstash/logstash.sysconfig.erb'
           owner 'root'
           group 'root'
           mode '0644'
@@ -32,7 +32,7 @@ class Chef
 
       action :create do
         template '/etc/init.d/logstash' do
-          source 'initd/logstash.initd.erb'
+          source 'logstash/logstash.initd.erb'
           owner 'root'
           group 'root'
           mode '0755'
@@ -52,14 +52,6 @@ class Chef
             'ls_open_files' => new_resource.ls_open_files,
             'ls_nice' => new_resource.ls_nice
           }
-        end
-
-        template '/etc/logstash/conf.d/10-syslog.conf' do
-          source 'logstash/10-syslog.conf'
-          owner 'root'
-          group 'root'
-          mode '0644'
-          cookbook new_resource.source
         end
       end
       action :delete do

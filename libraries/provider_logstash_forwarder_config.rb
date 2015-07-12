@@ -7,7 +7,7 @@ class Chef
 
       action :create do
         template '/etc/init.d/logstash-forwarder' do
-          source 'initd/logstash-forwarder.initd.erb'
+          source 'logstash-forwarder/logstash-forwarder.initd.erb'
           owner 'root'
           group 'root'
           mode '0755'
@@ -22,7 +22,7 @@ class Chef
         end
 
         template '/etc/default/logstash-forwarder' do
-          source 'logstash-forwarder.erb'
+          source 'logstash-forwarder/logstash-forwarder.erb'
           owner 'root'
           group 'root'
           mode '0644'

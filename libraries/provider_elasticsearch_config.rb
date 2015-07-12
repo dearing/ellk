@@ -7,7 +7,7 @@ class Chef
 
       action :create do
         template '/etc/sysconfig/elasticsearch' do
-          source 'sysconfig/elasticsearch.sysconfig.erb'
+          source 'elasticsearch/elasticsearch.sysconfig.erb'
           owner 'root'
           group 'root'
           mode '0644'
@@ -35,7 +35,7 @@ class Chef
 
         # TODO: probably better to let it source the sysconfig template instead
         template '/etc/init.d/elasticsearch' do
-          source 'initd/elasticsearch.initd.erb'
+          source 'elasticsearch/elasticsearch.initd.erb'
           owner 'root'
           group 'root'
           mode '0755'
