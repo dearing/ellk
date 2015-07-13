@@ -18,29 +18,50 @@ class Chef
           url new_resource.url
           version new_resource.version
         end
+
+        template '/etc/init.d/kibana' do
+          cookbook new_resource.source
+          source 'kibana/kibana.initd.erb'
+          owner 'root'
+          group 'root'
+          mode '0755'
+        end
+
       end
 
       action :delete do
         service 'kibana' do
-          :stop
+          action :stop
+        end
+      end
+
+      action :enable do
+        service 'kibana' do
+         action  :enable
+        end
+      end
+
+      action :disable do
+        service 'kibana' do
+         action  :disable
         end
       end
 
       action :restart do
         service 'kibana' do
-          :restart
+          action :restart
         end
       end
 
       action :start do
         service 'kibana' do
-          :start
+         action  :start
         end
       end
 
       action :stop do
         service 'kibana' do
-          :stop
+          action :stop
         end
       end
     end

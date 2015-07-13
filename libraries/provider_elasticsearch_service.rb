@@ -16,35 +16,41 @@ class Chef
 
       action :delete do
         service service_name do
-          :stop
+          action :stop
         end
         package service_name do
-          :remove
+          action :remove
         end
         remove_repository
       end
 
       action :enable do
         service service_name do
-          :enable
+          action :enable
+        end
+      end
+
+      action :disable do
+        service service_name do
+          action :disable
         end
       end
 
       action :restart do
         service service_name do
-          :restart
+          action :restart
         end
       end
 
       action :start do
         service service_name do
-          :start
+          action :start
         end
       end
 
       action :stop do
         service service_name do
-          :stop
+          action :stop
         end
       end
 

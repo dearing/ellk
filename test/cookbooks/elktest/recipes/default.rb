@@ -1,4 +1,6 @@
 
+# test a single node with all three projects
+
 package 'htop'
 package 'java-1.8.0-openjdk-headless'
 package 'nginx'

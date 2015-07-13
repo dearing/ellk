@@ -14,7 +14,8 @@ file '/opt/logstash/logstash.crt' do
 end
 
 logstash_config 'default' do
-  action [:create]
+  action :create
   key logstash_key
   crt logstash_crt
+  notifies :restart, 'logstash_service[default]'
 end

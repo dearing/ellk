@@ -1,67 +1,67 @@
 # Kibana is served by a back end server. This controls which port to use.
-port: 5601
+port: <%= @options['port'] %>
 
 # The host to bind the server to.
-host: "0.0.0.0"
+host: <%= @options['host'] %>
 
 # The Elasticsearch instance to use for all your queries.
-elasticsearch_url: "http://localhost:9200"
+elasticsearch_url: <%= @options['elasticsearch_url'] %>
 
 # preserve_elasticsearch_host true will send the hostname specified in `elasticsearch`. If you set it to false,
 # then the host you use to connect to *this* Kibana instance will be sent.
-elasticsearch_preserve_host: true
+elasticsearch_preserve_host: <%= @options['elasticsearch_preserve_host'] %>
 
 # Kibana uses an index in Elasticsearch to store saved searches, visualizations
 # and dashboards. It will create a new index if it doesn't already exist.
-kibana_index: ".kibana"
+kibana_index: <%= @options['kibana_index'] %>
 
 # If your Elasticsearch is protected with basic auth, this is the user credentials
 # used by the Kibana server to perform maintence on the kibana_index at statup. Your Kibana
 # users will still need to authenticate with Elasticsearch (which is proxied thorugh
 # the Kibana server)
-# kibana_elasticsearch_username: user
-# kibana_elasticsearch_password: pass
+# kibana_elasticsearch_username: <%= @options['kibana_elasticsearch_username'] %>
+# kibana_elasticsearch_password: <%= @options['kibana_elasticsearch_password'] %>
 
 # If your Elasticsearch requires client certificate and key
-# kibana_elasticsearch_client_crt: /path/to/your/client.crt
-# kibana_elasticsearch_client_key: /path/to/your/client.key
+# kibana_elasticsearch_client_crt: <%= @options['kibana_elasticsearch_client_crt'] %>
+# kibana_elasticsearch_client_key: <%= @options['kibana_elasticsearch_client_key'] %>
 
 # If you need to provide a CA certificate for your Elasticsarech instance, put
 # the path of the pem file here.
 # ca: /path/to/your/CA.pem
 
 # The default application to load.
-default_app_id: "discover"
+default_app_id: <%= @options['default_app_id'] %>
 
 # Time in milliseconds to wait for elasticsearch to respond to pings, defaults to
 # request_timeout setting
-# ping_timeout: 1500
+# ping_timeout: <%= @options['ping_timeout'] %>
 
 # Time in milliseconds to wait for responses from the back end or elasticsearch.
 # This must be > 0
-request_timeout: 300000
+request_timeout: <%= @options['request_timeout'] %>
 
 # Time in milliseconds for Elasticsearch to wait for responses from shards.
 # Set to 0 to disable.
-shard_timeout: 0
+shard_timeout: <%= @options['shard_timeout'] %>
 
 # Time in milliseconds to wait for Elasticsearch at Kibana startup before retrying
-# startup_timeout: 5000
+# startup_timeout: <%= @options['elasticsearch_url'] %>
 
 # Set to false to have a complete disregard for the validity of the SSL
 # certificate.
-verify_ssl: true
+verify_ssl: <%= @options['verify_ssl'] %>
 
 # SSL for outgoing requests from the Kibana Server (PEM formatted)
-# ssl_key_file: /path/to/your/server.key
-# ssl_cert_file: /path/to/your/server.crt
+# ssl_key_file: <%= @options['ssl_key_file'] %>
+# ssl_cert_file: <%= @options['ssl_cert_file'] %>
 
 # Set the path to where you would like the process id file to be created.
-# pid_file: /var/run/kibana.pid
+# pid_file: <%= @options['pid_file'] %>
 
 # If you would like to send the log output to a file you can set the path below.
 # This will also turn off the STDOUT log output.
-# log_file: ./kibana.log
+# log_file: <%= @options['log_file'] %>
 
 # Plugins that are included in the build, and no longer found in the plugins/ folder
 bundled_plugin_ids:

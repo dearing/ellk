@@ -3,5 +3,6 @@ elasticsearch_service 'default' do
 end
 
 elasticsearch_config 'default' do
-  action [:create]
+  action :create
+  notifies :restart, 'elasticsearch_service[default]'
 end

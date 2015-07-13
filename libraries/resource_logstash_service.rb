@@ -5,7 +5,7 @@ class Chef
     class LogstashService < Chef::Resource::LWRPBase
       resource_name :logstash_service
       default_action :create
-      actions [:create, :delete, :enable, :restart, :start, :stop]
+      actions [:create, :delete, :enable, :disable, :restart, :start, :stop]
     end
   end
 end

@@ -14,7 +14,8 @@ file '/opt/logstash-forwarder/logstash.crt' do
 end
 
 logstash_forwarder_config 'default' do
-  action [:create]
+  action :create
   key logstash_key
   crt logstash_crt
+  notifies :restart, 'logstash_forwarder_service[default]'
 end
