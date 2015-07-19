@@ -1,5 +1,8 @@
 ELK Cookbook
 ============
+
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+
 manage elasticsearch, logstash, logstash-forwarder and kibana
 
 *note: expects consumer to install java and handle certs*
