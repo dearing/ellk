@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /home/kibana
+exec 2>&1
+
+exec /usr/bin/env kibana -c /etc/kibana.yml

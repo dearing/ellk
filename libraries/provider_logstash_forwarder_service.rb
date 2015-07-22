@@ -32,25 +32,25 @@ class Chef
 
       action :disable do
         service service_name do
-         action  :disable
+          action :disable
         end
       end
 
       action :restart do
         service service_name do
-         action  :restart
+          action :restart
         end
       end
 
       action :start do
         service service_name do
-         action  :start
+          action :start
         end
       end
 
       action :stop do
         service service_name do
-         action  :stop
+          action :stop
         end
       end
 

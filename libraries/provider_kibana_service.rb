@@ -19,48 +19,47 @@ class Chef
           version new_resource.version
         end
 
-        template '/etc/init.d/kibana' do
+        runit_service 'kibana' do
+          default_logger true
+          owner "kibana"
+          group "kibana"
           cookbook new_resource.source
-          source 'kibana/kibana.initd.erb'
-          owner 'root'
-          group 'root'
-          mode '0755'
+          action [:create, :enable]
         end
-
       end
 
       action :delete do
-        service 'kibana' do
+        runit_service 'kibana' do
           action :stop
         end
       end
 
       action :enable do
-        service 'kibana' do
-         action  :enable
+        runit_service 'kibana' do
+          action :enable
         end
       end
 
       action :disable do
-        service 'kibana' do
-         action  :disable
+        runit_service 'kibana' do
+          action :disable
         end
       end
 
       action :restart do
-        service 'kibana' do
-          action :restart
+        runit_service 'kibana' do
+          action [:stop, :start]
         end
       end
 
       action :start do
-        service 'kibana' do
-         action  :start
+        runit_service 'kibana' do
+          action :start
         end
       end
 
       action :stop do
-        service 'kibana' do
+        runit_service 'kibana' do
           action :stop
         end
       end

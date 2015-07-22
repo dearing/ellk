@@ -37,12 +37,6 @@ class Chef
           }
         end
       end
-
-      action :delete do
-        file '/etc/kibana.yml' do
-          action :remove
-        end
-      end
     end
   end
 end
