@@ -1,8 +1,9 @@
-elasticsearch_service 'default' do
-  action [:create, :start, :enable]
+
+elasticsearch 'default' do
+  action [:install, :start, :enable]
 end
 
 elasticsearch_config 'default' do
   action :create
-  notifies :restart, 'elasticsearch_service[default]'
+  notifies :restart, 'elasticsearch[default]'
 end

@@ -2,10 +2,10 @@ require 'chef/resource'
 
 class Chef
   class Resource
-    class KibanaService < Chef::Resource::LWRPBase
-      resource_name :kibana_service
-      default_action :create
-      actions [:create, :delete, :enable, :disable, :restart, :start, :stop]
+    class Kibana < Chef::Resource::LWRPBase
+      resource_name :kibana
+      default_action :install
+      actions [:install, :remove, :enable, :disable, :restart, :start, :stop]
 
       attribute :checksum, kind_of: String, default: '6f42d25f337fd49f38e2af81b9ab6e0c987a199a8c0b2e1410d072f812cb4520'
       attribute :group, kind_of: String, default: 'kibana'
