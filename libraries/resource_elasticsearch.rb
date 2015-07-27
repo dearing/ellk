@@ -18,7 +18,7 @@ class Chef
 
       # ARK tracks verioning by appending the :name with this for symlinking to a path
       attribute :version, kind_of: String, default: '1.7.0'
-      attribute :has_binaries, kind_of: Array, default: ['/bin/elasticsearch']
+      attribute :has_binaries, kind_of: Array, default: ['bin/elasticsearch']
       attribute :append_env_path, kind_of: [TrueClass, FalseClass], default: false
 
       # USER/GROUP to install by, also creates users on the OS for them
@@ -27,6 +27,7 @@ class Chef
       attribute :owner, kind_of: String, default: 'elasticsearch'
 
       attribute :path, kind_of: String, default: '/opt/elasticsearch'
+      attribute :prefix_bin, kind_of: String, default: '/opt/bin'
     end
   end
 end

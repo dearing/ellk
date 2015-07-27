@@ -6,7 +6,13 @@ class Chef
       provides :kibana_config
 
       action :create do
-        template '/etc/kibana.yml' do
+        directory '/etc/kibana' do
+          mode '0755'
+          action :create
+          recursive true
+        end
+
+        template '/etc/kibana/kibana.yml' do
           source 'kibana/kibana.yml.erb'
           owner new_resource.user
           owner new_resource.group

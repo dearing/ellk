@@ -6,10 +6,16 @@ class Chef
       provides :elasticsearch_config
 
       action :create do
-        template '/etc/sysconfig/elasticsearch' do
-          source 'elasticsearch/elasticsearch.sysconfig.erb'
-          owner 'root'
-          group 'root'
+        directory '/etc/elasticsearch' do
+          mode '0755'
+          action :create
+          recursive true
+        end
+
+        template '/etc/elasticsearch/elasticsearch.yml' do
+          source 'elasticsearch/elasticsearch.yml.erb'
+          owner 'elasticsearch'
+          group 'elasticsearch'
           mode '0644'
           cookbook new_resource.source
           variables options: {
@@ -34,9 +40,6 @@ class Chef
         end
       end
       action :delete do
-        file '/etc/sysconfig/elasticsearc' do
-          action :delete
-        end
       end
     end
   end

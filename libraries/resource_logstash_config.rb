@@ -8,10 +8,10 @@ class Chef
       actions [:create, :delete]
 
       attribute :crt, kind_of: String, default: ''
-      attribute :crt_location, kind_of: String, default: '/opt/logstash/logstash.crt'
+      attribute :crt_location, kind_of: String, default: '/etc/logstash/logstash.crt'
       attribute :javacmd, kind_of: String, default: '/usr/bin/java'
       attribute :key, kind_of: String, default: ''
-      attribute :key_location, kind_of: String, default: '/opt/logstash/logstash.key'
+      attribute :key_location, kind_of: String, default: '/etc/logstash/logstash.key'
       attribute :ls_conf_dir, kind_of: String, default: '/etc/logstash/conf.d'
       attribute :ls_group, kind_of: String, default: 'logstash'
       attribute :ls_heap_size, kind_of: String, default: '500m'

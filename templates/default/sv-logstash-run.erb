@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /home/logstash
+exec 2>&1
+
+exec /usr/bin/env logstash -c /etc/logstash/config

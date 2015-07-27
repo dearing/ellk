@@ -4,7 +4,6 @@ class Chef
       use_inline_resources if defined?(use_inline_resources)
 
       provides :elasticsearch
-
       service_name = 'elasticsearch'
 
       action :install do
@@ -16,6 +15,7 @@ class Chef
           group new_resource.group
           has_binaries new_resource.has_binaries
           owner new_resource.user
+          prefix_bin new_resource.prefix_bin
           prefix_root new_resource.path
           url new_resource.url
           version new_resource.version
@@ -24,7 +24,7 @@ class Chef
         runit_service service_name do
           default_logger true
           owner new_resource.user
-          group new_resource.user
+          group new_resource.group
           cookbook new_resource.source
           action [:create, :enable]
         end
@@ -36,7 +36,7 @@ class Chef
         end
       end
 
-      # SERVICES
+      ## SERVICES
 
       action :enable do
         service service_name do
@@ -64,7 +64,7 @@ class Chef
 
       action :restart do
         service service_name do
-          action [:stop, :start]
+          action :restart
         end
       end
     end

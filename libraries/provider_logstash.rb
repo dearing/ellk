@@ -1,11 +1,11 @@
 class Chef
   class Provider
-    class Kibana < Chef::Provider::LWRPBase
+    class Logstash < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
 
-      provides :kibana
+      provides :logstash
 
-      service_name = 'kibana'
+      service_name = 'logstash'
 
       action :install do
         user new_resource.user
@@ -14,7 +14,7 @@ class Chef
         ark service_name do
           checksum new_resource.checksum
           group new_resource.group
-          has_binaries ['bin/kibana']
+          has_binaries new_resource.has_binaries
           owner new_resource.user
           prefix_root new_resource.path
           url new_resource.url
@@ -24,7 +24,7 @@ class Chef
         runit_service service_name do
           default_logger true
           owner new_resource.user
-          group new_resource.group
+          group new_resource.user
           cookbook new_resource.source
           action [:create, :enable]
         end
@@ -35,35 +35,29 @@ class Chef
           action :stop
         end
       end
+      ## SERVICE
 
-      ## SERVICES
       action :enable do
-        runit_service service_name do
+        service service_name do
           action :enable
         end
       end
 
-      action :disable do
-        runit_service service_name do
-          action :disable
+      action :restart do
+        service service_name do
+          action :restart
         end
       end
 
       action :start do
-        runit_service service_name do
+        service service_name do
           action :start
         end
       end
 
       action :stop do
-        runit_service service_name do
+        service service_name do
           action :stop
-        end
-      end
-
-      action :restart do
-        runit_service service_name do
-          action :restart
         end
       end
     end
