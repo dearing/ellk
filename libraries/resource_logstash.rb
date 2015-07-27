@@ -26,7 +26,7 @@ class Chef
 
       attribute :path, kind_of: String, default: '/opt/logstash'
     end
-    
+
     class LogstashConfig < Chef::Resource::LWRPBase
       resource_name :logstash_config
       default_action :create

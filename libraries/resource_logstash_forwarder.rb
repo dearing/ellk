@@ -14,7 +14,7 @@ class Chef
       attribute :user, kind_of: String, default: 'logstash'
       attribute :version, kind_of: String, default: '0.4.0'
     end
-    
+
     class LogstashForwarderConfig < Chef::Resource::LWRPBase
       resource_name :logstash_forwarder_config
       default_action :create

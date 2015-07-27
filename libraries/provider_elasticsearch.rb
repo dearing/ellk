@@ -1,9 +1,12 @@
 class Chef
   class Provider
     class Elasticsearch < Chef::Provider::LWRPBase
+      include ELK::Helpers
+
       use_inline_resources if defined?(use_inline_resources)
 
       provides :elasticsearch
+
       service_name = 'elasticsearch'
 
       action :install do
@@ -15,7 +18,6 @@ class Chef
           group new_resource.group
           has_binaries new_resource.has_binaries
           owner new_resource.user
-          prefix_bin new_resource.prefix_bin
           prefix_root new_resource.path
           url new_resource.url
           version new_resource.version
@@ -26,6 +28,12 @@ class Chef
           owner new_resource.user
           group new_resource.group
           cookbook new_resource.source
+          env new_resource.runit_env
+          options new_resource.runit_options.merge(
+            'install_path' => "#{new_resource.path}/#{new_resource.name}-#{new_resource.version}",
+            'user' => new_resource.user,
+            'group' => new_resource.group
+          )
           action [:create, :enable]
         end
       end

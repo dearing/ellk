@@ -1,6 +1,7 @@
 #!/bin/sh
 
-cd /home/kibana
+cd  <%= @options['install_path'] %>
 exec 2>&1
 
-exec /usr/bin/env kibana -c /etc/kibana.yml
+chpst -u :<%= @options['user'] %>:<%= @options['group'] %>
+exec ./bin/kibana -c <%= @options['config_file'] %>

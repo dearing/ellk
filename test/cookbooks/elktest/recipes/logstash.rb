@@ -1,5 +1,3 @@
-logstash 'default'
-
 secrets = Chef::DataBagItem.load('secrets', 'logstash')
 logstash_key = Base64.decode64(secrets['key'])
 logstash_crt = Base64.decode64(secrets['certificate'])
@@ -17,9 +15,4 @@ file '/etc/logstash/logstash.crt' do
   content logstash_crt
 end
 
-logstash_config 'default' do
-  action :create
-  key logstash_key
-  crt logstash_crt
-  notifies :restart, 'logstash[default]'
-end
+logstash 'default'
