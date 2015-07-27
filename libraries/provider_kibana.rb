@@ -24,22 +24,6 @@ class Chef
 
         home_dir = "#{new_resource.path}/kibana-#{new_resource.version}"
 
-        # RUNIT
-        runit_service service_name do
-          default_logger true
-          owner new_resource.user
-          group new_resource.group
-          cookbook new_resource.source
-          env new_resource.runit_env
-          options new_resource.runit_options.merge(
-            'install_path' => home_dir,
-            'user' => new_resource.user,
-            'group' => new_resource.group,
-            'config_file' => "#{home_dir}/config/kibana.yml"
-          )
-          action [:create, :enable]
-        end
-
         template "#{home_dir}/config/kibana.yml" do
           source 'kibana/kibana.yml.erb'
           owner new_resource.user
@@ -69,6 +53,22 @@ class Chef
             'user' => new_resource.user,
             'verify_ssl' => new_resource.verify_ssl
           }
+        end
+
+        # RUNIT
+        runit_service service_name do
+          default_logger true
+          owner new_resource.user
+          group new_resource.group
+          cookbook new_resource.source
+          env new_resource.runit_env
+          options new_resource.runit_options.merge(
+            'install_path' => home_dir,
+            'user' => new_resource.user,
+            'group' => new_resource.group,
+            'config_file' => "#{home_dir}/config/kibana.yml"
+          )
+          action [:create, :enable]
         end
       end
 

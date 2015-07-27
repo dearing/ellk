@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cd /home/logstash
-exec 2>&1
-
-exec /usr/bin/env logstash-forwarder -c /etc/logstash-forwarder/logstash-forwarder.yml

@@ -2,11 +2,14 @@ secrets = Chef::DataBagItem.load('secrets', 'logstash')
 logstash_key = Base64.decode64(secrets['key'])
 logstash_crt = Base64.decode64(secrets['certificate'])
 
-file '/etc/logstash-forwarder/logstash.key' do
+file '/tmp/logstash.key' do
   content logstash_key
 end
-file '/etc/logstash-forwarder/logstash.crt' do
+file '/tmp/logstash.crt' do
   content logstash_crt
 end
 
-logstash_forwarder 'default'
+logstash_forwarder 'default' do
+  crt_location '/tmp/logstash.crt'
+  key_location '/tmp/logstash.key'
+end
