@@ -25,12 +25,6 @@ class Chef
       attribute :owner, kind_of: String, default: 'logstash'
 
       attribute :path, kind_of: String, default: '/opt/logstash'
-    end
-
-    class LogstashConfig < Chef::Resource::LWRPBase
-      resource_name :logstash_config
-      default_action :create
-      actions [:create, :delete]
 
       attribute :crt, kind_of: String, default: ''
       attribute :crt_location, kind_of: String, default: '/etc/logstash/logstash.crt'
@@ -50,7 +44,11 @@ class Chef
       attribute :ls_use_gc_logging, kind_of: [TrueClass, FalseClass], default: true
       attribute :ls_user, kind_of: String, default: 'logstash'
       attribute :port, kind_of: Integer, default: 5043
-      attribute :source, kind_of: String, default: 'elk'
+
+      # RUNIT
+      attribute :runit_args, kind_of: Hash, default: {}
+      attribute :runit_options, kind_of: Hash, default: {}
+      attribute :runit_env, kind_of: Hash, default: {}
     end
   end
 end
