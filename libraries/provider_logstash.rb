@@ -16,6 +16,7 @@ class Chef
           owner new_resource.user
           group new_resource.group
           mode '0755'
+          recursive true
           action :create
         end
 

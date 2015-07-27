@@ -63,7 +63,7 @@ class Chef
           cookbook new_resource.source
           env new_resource.runit_env
           options new_resource.runit_options.merge(
-            'install_path' => home_dir,
+            'home_dir' => home_dir,
             'user' => new_resource.user,
             'group' => new_resource.group,
             'config_file' => "#{home_dir}/config/kibana.yml"

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd  <%= @options['install_path'] %>
+cd  <%= @options['home_dir'] %>
 exec 2>&1
 
 chpst -u :<%= @options['user'] %>:<%= @options['group'] %>

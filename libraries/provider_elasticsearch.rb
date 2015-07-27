@@ -10,6 +10,9 @@ class Chef
       service_name = 'elasticsearch'
 
       action :install do
+
+        home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
+
         user new_resource.user
         group new_resource.group
 
@@ -30,7 +33,7 @@ class Chef
           cookbook new_resource.source
           env new_resource.runit_env
           options new_resource.runit_options.merge(
-            'install_path' => "#{new_resource.path}/#{new_resource.name}-#{new_resource.version}",
+            'home_dir' => home_dir,
             'user' => new_resource.user,
             'group' => new_resource.group
           )
