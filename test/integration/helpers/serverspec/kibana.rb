@@ -1,10 +1,7 @@
 # sshd_service = os[:family] == 'redhat' ? 'sshd' : 'ssh'
 
 shared_examples 'kibana' do
-  describe service('kibana') do
-    it 'is enabled and running' do
-      expect(subject).to be_enabled
-      expect(subject).to be_running
-    end
+  describe command('sv status kibana') do
+    its(:stdout) { should match 'run: kibana' }
   end
 end

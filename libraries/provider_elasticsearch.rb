@@ -10,7 +10,6 @@ class Chef
       service_name = 'elasticsearch'
 
       action :install do
-
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
 
         user new_resource.user
