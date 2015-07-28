@@ -1,3 +1,12 @@
+input {
+  lumberjack {
+    port => "<%= @options['port'] %>"
+    type => "logs"
+    ssl_certificate => "<%= @options['crt_location'] %>"
+    ssl_key => "<%= @options['key_location'] %>"
+  }
+}
+
 filter {
   if [type] == "syslog" {
     grok {
@@ -10,4 +19,9 @@ filter {
       match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
     }
   }
+}
+
+output {
+  elasticsearch { host => localhost }
+  stdout { codec => rubydebug }
 }
