@@ -3,7 +3,7 @@ class Chef
     class Kibana < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
 
-      provides :kibana
+      # provides :kibana
 
       service_name = 'kibana'
 

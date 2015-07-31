@@ -5,7 +5,7 @@ class Chef
 
       use_inline_resources if defined?(use_inline_resources)
 
-      provides :elasticsearch
+      # provides :elasticsearch
 
       service_name = 'elasticsearch'
 

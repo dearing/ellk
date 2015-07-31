@@ -1,5 +1,5 @@
 # test a single node with all four projects
-%w( tar nano htop java-1.8.0-openjdk-headless).each do |pkg|
+%w( tar nano htop java-1.8.0-openjdk-headless ).each do |pkg|
   package pkg
 end
 

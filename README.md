@@ -13,7 +13,7 @@ centos66
 
 Requirements
 ------------
-- chef 12
+- chef 11+
 - some kind of java
 - see [metadata](/metadata.rb) for complexity
 

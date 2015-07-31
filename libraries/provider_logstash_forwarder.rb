@@ -3,7 +3,8 @@ class Chef
     class LogstashForwarder < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
 
-      provides :logstash_forwarder
+      # provides :logstash_forwarder
+
       service_name = 'logstash-forwarder'
 
       action :install do
