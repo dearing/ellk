@@ -7,8 +7,6 @@ class Chef
       default_action :install
       actions [:install, :remove, :enable, :disable, :restart, :start, :stop]
 
-      require 'chef/resource'
-
       # used to target any files/templates; default to self
       attribute :source, kind_of: String, default: 'elk'
 

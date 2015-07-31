@@ -3,7 +3,7 @@ class Chef
     class Logstash < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
 
-      provides :logstash
+      # provides :logstash
 
       service_name = 'logstash'
       action :install do
