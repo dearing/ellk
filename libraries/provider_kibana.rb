@@ -8,8 +8,13 @@ class Chef
       service_name = 'kibana'
 
       action :install do
-        user new_resource.user
-        group new_resource.group
+        user new_resource.user do 
+          system true
+          shell '/sbin/nologin'
+        end
+        group new_resource.group do
+          system true
+        end
 
         # ARK
         ark service_name do

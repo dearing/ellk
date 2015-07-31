@@ -9,8 +9,13 @@ class Chef
 
       action :install do
         # TODO: make home folder working dir
-        user new_resource.user
-        group new_resource.group
+        user new_resource.user do 
+          system true
+          shell '/sbin/nologin'
+        end
+        group new_resource.group do
+          system true
+        end
 
         home_dir = "/opt/logstash-forwarder/logstash-forwarder-#{new_resource.version}"
 

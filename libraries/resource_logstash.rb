@@ -13,8 +13,6 @@ class Chef
       # url and sha256 of the archive to download and unpack
       attribute :url, kind_of: String, default: 'https://download.elastic.co/logstash/logstash/logstash-1.5.3.tar.gz'
       attribute :checksum, kind_of: String, default: 'eb3c366074e561d777348bfe9db3d4d1cccbf2fa8e7406776f500b4ca639c4aa'
-
-      # ARK tracks verioning by appending the :name with this for symlinking to a path
       attribute :version, kind_of: String, default: '1.5.3'
       attribute :has_binaries, kind_of: Array, default: ['bin/logstash']
       attribute :append_env_path, kind_of: [TrueClass, FalseClass], default: false
@@ -45,7 +43,10 @@ class Chef
       # attribute :ls_pidfile, kind_of: String, default: '/var/run/logstash.pid'
       # attribute :ls_use_gc_logging, kind_of: [TrueClass, FalseClass], default: true
       # attribute :ls_user, kind_of: String, default: 'logstash'
+      
       attribute :port, kind_of: Integer, default: 5043
+
+      attribute :search_by, kind_of: String, default: nil
 
       # RUNIT
       attribute :runit_args, kind_of: Hash, default: {}

@@ -24,6 +24,8 @@ class Chef
       attribute :owner, kind_of: String, default: 'elasticsearch'
       attribute :path, kind_of: String, default: '/opt/elasticsearch'
 
+      attribute :search_by, kind_of: String, default: nil
+
       # RUNIT
       attribute :runit_args, kind_of: Hash, default: {
 

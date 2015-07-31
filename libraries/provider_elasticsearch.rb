@@ -12,8 +12,13 @@ class Chef
       action :install do
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
 
-        user new_resource.user
-        group new_resource.group
+        user new_resource.user do 
+          system true
+          shell '/sbin/nologin'
+        end
+        group new_resource.group do
+          system true
+        end
 
         ark service_name do
           checksum new_resource.checksum

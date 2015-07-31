@@ -9,8 +9,13 @@ class Chef
       action :install do
         home_dir = "/opt/logstash/logstash-#{new_resource.version}"
 
-        user new_resource.user
-        group new_resource.group
+        user new_resource.user do 
+          system true
+          shell '/sbin/nologin'
+        end
+        group new_resource.group do
+          system true
+        end
 
         directory "#{home_dir}/config" do
           owner new_resource.user
