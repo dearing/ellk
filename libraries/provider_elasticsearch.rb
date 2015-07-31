@@ -25,6 +25,22 @@ class Chef
           version new_resource.version
         end
 
+        template "#{home_dir}/config/logging.yml" do
+          source 'elasticsearch/logging.yml.erb'
+          owner new_resource.user
+          group new_resource.group
+          mode '0644'
+          cookbook new_resource.source
+        end
+
+        template "#{home_dir}/config/elasticsearch.yml" do
+          source 'elasticsearch/elasticsearch.yml.erb'
+          owner new_resource.user
+          group new_resource.group
+          mode '0644'
+          cookbook new_resource.source
+        end
+
         runit_service service_name do
           default_logger true
           owner new_resource.user

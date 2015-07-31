@@ -32,16 +32,16 @@ class Chef
 
         template "#{home_dir}/config/logging.yml" do
           source 'logstash/logging.yml.erb'
-          owner 'root'
-          group 'root'
+          owner new_resource.user
+          group new_resource.group
           mode '0644'
           cookbook new_resource.source
         end
 
         template "#{home_dir}/config/logstash.conf" do
           source 'logstash/logstash.conf.erb'
-          owner 'root'
-          group 'root'
+          owner new_resource.user
+          group new_resource.group
           mode '0644'
           cookbook new_resource.source
           variables options: {

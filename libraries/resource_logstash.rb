@@ -30,7 +30,7 @@ class Chef
       attribute :crt_location, kind_of: String, default: '/etc/logstash/logstash.crt'
       attribute :key, kind_of: String, default: ''
       attribute :key_location, kind_of: String, default: '/etc/logstash/logstash.key'
-      
+
       # TODO: these can be exported as environment vars instead
       # attribute :javacmd, kind_of: String, default: '/usr/bin/java'
       # attribute :ls_conf_dir, kind_of: String, default: '/etc/logstash/conf.d'

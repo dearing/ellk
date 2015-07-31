@@ -34,8 +34,8 @@ class Chef
 
         template "#{home_dir}/logstash-forwarder.conf" do
           source 'logstash-forwarder/logstash-forwarder.conf.erb'
-          owner 'logstash'
-          group 'logstash'
+          owner new_resource.user
+          group new_resource.group
           mode '0644'
           cookbook new_resource.source
           variables options: {
