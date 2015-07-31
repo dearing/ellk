@@ -3,9 +3,9 @@ elk CHANGELOG
 
 This file is used to list changes made in each version of the elk cookbook.
 
-0.1.0
+0.2.0
 -----
-- [your_name] - Initial release of elk
+- Jacob Dearing - Pre-Release
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

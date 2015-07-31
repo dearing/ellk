@@ -9,8 +9,13 @@ class Chef
       action :install do
         home_dir = "/opt/logstash/logstash-#{new_resource.version}"
 
-        user new_resource.user
-        group new_resource.group
+        user new_resource.user do 
+          system true
+          shell '/sbin/nologin'
+        end
+        group new_resource.group do
+          system true
+        end
 
         directory "#{home_dir}/config" do
           owner new_resource.user
@@ -32,16 +37,16 @@ class Chef
 
         template "#{home_dir}/config/logging.yml" do
           source 'logstash/logging.yml.erb'
-          owner 'root'
-          group 'root'
+          owner new_resource.user
+          group new_resource.group
           mode '0644'
           cookbook new_resource.source
         end
 
         template "#{home_dir}/config/logstash.conf" do
           source 'logstash/logstash.conf.erb'
-          owner 'root'
-          group 'root'
+          owner new_resource.user
+          group new_resource.group
           mode '0644'
           cookbook new_resource.source
           variables options: {
@@ -58,6 +63,7 @@ class Chef
           owner new_resource.user
           group new_resource.user
           cookbook new_resource.source
+          env new_resource.runit_env
           options new_resource.runit_options.merge(
             'home_dir' => home_dir,
             'user' => new_resource.user,

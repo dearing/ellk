@@ -18,10 +18,14 @@ class Chef
       attribute :crt_location, kind_of: String, default: '/etc/logstash-forwarder/logstash.crt'
       attribute :key, kind_of: String, default: ''
       attribute :key_location, kind_of: String, default: '/etc/logstash-forwarder/logstash.key'
-      attribute :chdir, kind_of: String, default: '/var/lib/logstash-forwarder'
-      attribute :chroot, kind_of: String, default: '/'
+      
+      # attribute :chdir, kind_of: String, default: '/var/lib/logstash-forwarder'
+      # attribute :chroot, kind_of: String, default: '/'
+      
       attribute :nice, kind_of: String, default: ''
       attribute :port, kind_of: Integer, default: 5043
+
+      attribute :search_by, kind_of: String, default: nil
 
       # RUNIT
       attribute :runit_args, kind_of: Hash, default: {}

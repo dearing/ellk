@@ -12,8 +12,13 @@ class Chef
       action :install do
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
 
-        user new_resource.user
-        group new_resource.group
+        user new_resource.user do 
+          system true
+          shell '/sbin/nologin'
+        end
+        group new_resource.group do
+          system true
+        end
 
         ark service_name do
           checksum new_resource.checksum
@@ -23,6 +28,22 @@ class Chef
           prefix_root new_resource.path
           url new_resource.url
           version new_resource.version
+        end
+
+        template "#{home_dir}/config/logging.yml" do
+          source 'elasticsearch/logging.yml.erb'
+          owner new_resource.user
+          group new_resource.group
+          mode '0644'
+          cookbook new_resource.source
+        end
+
+        template "#{home_dir}/config/elasticsearch.yml" do
+          source 'elasticsearch/elasticsearch.yml.erb'
+          owner new_resource.user
+          group new_resource.group
+          mode '0644'
+          cookbook new_resource.source
         end
 
         runit_service service_name do
