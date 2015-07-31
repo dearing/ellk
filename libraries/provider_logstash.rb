@@ -58,6 +58,7 @@ class Chef
           owner new_resource.user
           group new_resource.user
           cookbook new_resource.source
+          env new_resource.runit_env
           options new_resource.runit_options.merge(
             'home_dir' => home_dir,
             'user' => new_resource.user,
