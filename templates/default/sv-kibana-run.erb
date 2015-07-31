@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cd  <%= @options['home_dir'] %>
+cd <%= @options['home_dir'] %>
 exec 2>&1
-
-chpst -u :<%= @options['user'] %>:<%= @options['group'] %>
-exec ./bin/kibana -c <%= @options['config_file'] %>
+exec chpst -u <%= @options['user'] %>:<%= @options['group'] %> ./bin/kibana -c <%= @options['config_file'] %>
