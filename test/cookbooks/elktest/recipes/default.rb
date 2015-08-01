@@ -21,12 +21,12 @@ elasticsearch 'default' do
 end
 
 bonus_env = { 'HELLO' => 'WORLD', 'LS_USER' => 'kibana' } # for testing sake
-# demonstrate sneaking in extra configuration when sourceing outside the elk cookbook
+# demonstrate sneaking in extra configuration when sourceing outside the ellk cookbook
 bonus_conf = { 'test_value' => 'merged hash from a recipe!' }
 logstash 'default' do
   crt_location '/tmp/logstash.crt'
   key_location '/tmp/logstash.key'
-  source 'elktest'
+  source 'ellktest'
   runit_env bonus_env
   conf_options bonus_conf
 end

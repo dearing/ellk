@@ -1,7 +1,6 @@
 class Chef
   class Provider
     class Elasticsearch < Chef::Provider::LWRPBase
-      include ELK::Helpers
       use_inline_resources if defined?(use_inline_resources)
       provides :elasticsearch if Chef::Provider.respond_to?(:provides)
       service_name = 'elasticsearch'

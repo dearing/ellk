@@ -1,4 +1,4 @@
-ELK Cookbook
+ELLK Cookbook
 ============
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
@@ -34,7 +34,7 @@ This is hack friendly and mainly focused on getting you a framework
 to work by.  The heavy lifting comes from ARK and RUNIT cookbooks; everything else is template 
 manipulation.  Any discovery trickeness should be handled at the consuming recipe.
 
-See [elktest](/test/cookbooks/elktest/recipes/default.rb) as an example.
+See [ellktest](/test/cookbooks/ellktest/recipes/default.rb) as an example.
 
 Contributing
 ------------

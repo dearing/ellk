@@ -28,7 +28,7 @@ class Chef
       attribute :port, kind_of: [String, Integer], default: 3000
       attribute :request_timeout, kind_of: Integer, default: 30_000
       attribute :shard_timeout, kind_of: Integer, default: 15
-      attribute :source, kind_of: String, default: 'elk'
+      attribute :source, kind_of: String, default: 'ellk'
       attribute :ssl_cert_file, kind_of: String, default: nil
       attribute :ssl_key_file, kind_of: String, default: nil
       attribute :startup_timeout, kind_of: Integer, default: 5000

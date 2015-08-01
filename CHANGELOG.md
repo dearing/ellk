@@ -1,7 +1,7 @@
-elk CHANGELOG
+ellk CHANGELOG
 =============
 
-This file is used to list changes made in each version of the elk cookbook.
+This file is used to list changes made in each version of the ellk cookbook.
 
 0.3.0
 -----

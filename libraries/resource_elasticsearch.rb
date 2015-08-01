@@ -8,7 +8,7 @@ class Chef
       actions [:install, :remove, :enable, :disable, :restart, :start, :stop]
 
       # used to target any files/templates; default to self
-      attribute :source, kind_of: String, default: 'elk'
+      attribute :source, kind_of: String, default: 'ellk'
 
       # ARK
       attribute :url, kind_of: String, default: 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.0.tar.gz'

@@ -8,7 +8,7 @@ class Chef
       actions [:install, :remove, :enable, :disable, :restart, :start, :stop]
 
       # used to target any files/templates; default to self
-      attribute :source, kind_of: String, default: 'elk'
+      attribute :source, kind_of: String, default: 'ellk'
 
       # url and sha256 of the archive to download and unpack
       attribute :url, kind_of: String, default: 'https://download.elastic.co/logstash/logstash/logstash-1.5.3.tar.gz'

@@ -8,7 +8,7 @@ class Chef
       actions [:install, :remove, :enable, :disable, :restart, :start, :stop]
 
       # targeted cookbook for templates/files
-      attribute :source, kind_of: String, default: 'elk'
+      attribute :source, kind_of: String, default: 'ellk'
 
       # installation related
       attribute :group, kind_of: String, default: 'logstash'
