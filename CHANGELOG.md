@@ -3,6 +3,12 @@ ellk CHANGELOG
 
 This file is used to list changes made in each version of the ellk cookbook.
 
+
+0.3.2
+-----
+- Jacob Dearing - Cosmtic updates and Berkshelf pinning to avoid bug in Runit
+			    - https://github.com/dearing/ellk/issues/22
+
 0.3.0
 -----
 - Jacob Dearing - Release-Ready for feedback. :8ball: 

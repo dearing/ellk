@@ -2,13 +2,24 @@
 #driver:
 #  name: docker
 #  dockerfile: test/Dockerfile-centos66
-# provision_command: curl -L http://www.chef.io/chef/install.sh | bash
-
-driver_config:
-  publish_all: true
+#  provision_command: curl -L http://www.chef.io/chef/install.sh | bash
+#  driver_config:
+#    publish_all: true
 
 platforms:
-- name: centos-6.6
+- name: centos-5
+- name: centos-6
+- name: centos-7
+- name: fedora
+- name: ubuntu-12
+  run_list:
+  - recipe[apt]
+- name: ubuntu-14
+  run_list:
+  - recipe[apt]
+- name: debian
+  run_list:
+  - recipe[apt]
 
 provisioner:
   name: chef_zero

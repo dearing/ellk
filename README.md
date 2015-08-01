@@ -1,40 +1,37 @@
 ELLK Cookbook
 ============
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
-
 hack friendly: Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
 *note: expects consumer to install java and handle certs*
 
-Support and Tested
-------------
-centos66
+Works with anything [ARK](https://github.com/burtlo/ark) and [RUNIT](https://github.com/hw-cookbooks/runit) can handle.
 
 Requirements
 ------------
 - chef 11+
 - some kind of java
-- see [metadata](/metadata.rb) for complexity
+- see [metadata](https://github.com/dearing/ellk/metadata.rb) for complexity
 
 About
 ------------
-The mindset for this creation is that logstash-forwarder is pleasant enough
-to cast out to all your resident nodes and since messing with templates is a pain,
-it allows you to just provide a hash to template out the configuration.  Making
-recipes easier to configure with.
+The heavy lifting comes from [ARK](https://github.com/burtlo/ark) and [RUNIT](https://github.com/hw-cookbooks/runit) cookbooks with a focus around being able to pass optional configurations via merged hashsets for templates and environment variable sets.  Meditate on the idea that this library is simply providing a common installation and templating for the 4 projects.  It expects you to do all the tweaking and configuring as needed because attempting to account for all is untenable.  The opinion is then that you would want logstash-forwarder on all nodes communicating to your logstash endpoints.  Logstash-forwarder is overloaded to accept a hash for the logs it will harvert as an attribute making it easy to use in recipes without fumbling with templates. The defaults then expect that logstash would remain resident along all elasticsearch nodes which finally has an interface via kibana.  Beyond this, inheriting templates and customizing the configurations and security is up to you.
 
-Next in the chain are the `logstash` nodes.  Typically, I'd imagine them to be 1:1 with all
-`elasticsearch` nodes also created by this LWRP; so `localhost` is a default output.  Otherwise,
-the matra of this design is if defaults don't work, `source` your consuming cookbook with your own
-templates copied from this cookbook.  Pass any optional config vars you want in your templaes with 
-`conf_options` attribute and hack away.
+The default installations are:
+```
+  elasticsearch      = 1.7.0 // JAVA
+  logstash           = 1.5.3 // RUBY
+  logstash-forwarder = 0.4.0 // GO
+  kibana             = 4.1.1 // NODEJS
+```
+You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag is by. See the resource files in the libraries folder for the accepted attributes.
 
-This is hack friendly and mainly focused on getting you a framework
-to work by.  The heavy lifting comes from ARK and RUNIT cookbooks; everything else is template 
-manipulation.  Any discovery trickeness should be handled at the consuming recipe.
+See [ellktest](https://github.com/dearing/ellk/test/cookbooks/ellktest/recipes/default.rb) for examples and flexibility..
 
-See [ellktest](/test/cookbooks/ellktest/recipes/default.rb) as an example.
+TODO
+------------
+see [issues](https://github.com/dearing/ellk/issues)
+
 
 Contributing
 ------------

@@ -2,11 +2,12 @@ name 'ellk'
 maintainer 'Jacob Dearing'
 maintainer_email 'jacob.dearing@gmail.com'
 license 'MIT'
-description 'Installs/Configures ELLK'
+description 'Library to handle Elasticsearch, Logstash, Logstash-Forwarder & Kibana'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '0.3.1'
+version '0.3.2'
 
-%w(ubuntu debian gentoo centos redhat amazon scientific oracle enterpriseenterprise).each do |os|
+# retsricted only to runit and ark really
+%w(ubuntu debian centos redhat amazon scientific oracle enterpriseenterprise).each do |os|
   supports os
 end
 
