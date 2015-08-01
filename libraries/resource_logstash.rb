@@ -43,7 +43,7 @@ class Chef
       # attribute :ls_pidfile, kind_of: String, default: '/var/run/logstash.pid'
       # attribute :ls_use_gc_logging, kind_of: [TrueClass, FalseClass], default: true
       # attribute :ls_user, kind_of: String, default: 'logstash'
-      
+
       attribute :port, kind_of: Integer, default: 5043
 
       attribute :search_by, kind_of: String, default: nil
