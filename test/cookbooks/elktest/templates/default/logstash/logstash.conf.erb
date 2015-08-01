@@ -24,6 +24,9 @@ filter {
   }
 }
 
+# TODO: logstash doesn't convert 1:1 with ruby or json, hash passing will have to wait
+# for now we consider all elasticsearch nodes have a logstash service on the same machine
 output {
-  elasticsearch { host => localhost }
+  elasticsearch { host => localhost}
+  stdout { codec => rubydebug }
 }

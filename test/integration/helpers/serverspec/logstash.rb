@@ -7,7 +7,12 @@ shared_examples 'logstash' do
 
   describe file('/etc/service/logstash/env/LS_USER') do
     it { should be_file }
-    its(:content) { should match 'logstash' }
+    its(:content) { should match 'kibana' }  # <= not a typo; testing hash merge
+  end
+
+  describe file('/etc/service/logstash/env/HELLO') do
+    it { should be_file }
+    its(:content) { should match 'WORLD' }
   end
 
   describe file('/opt/logstash/logstash-1.5.3/config/logging.yml') do

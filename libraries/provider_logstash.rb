@@ -5,6 +5,7 @@ class Chef
       provides :logstash if Chef::Provider.respond_to?(:provides)
 
       service_name = 'logstash'
+
       action :install do
         home_dir = "/opt/logstash/logstash-#{new_resource.version}"
 
@@ -32,6 +33,7 @@ class Chef
           prefix_root new_resource.path
           url new_resource.url
           version new_resource.version
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         template "#{home_dir}/config/logging.yml" do
@@ -40,6 +42,7 @@ class Chef
           group new_resource.group
           mode '0644'
           cookbook new_resource.source
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         template "#{home_dir}/config/logstash.conf" do
@@ -50,19 +53,34 @@ class Chef
           cookbook new_resource.source
           variables options: {
             'port' => new_resource.port,
-            'key' => new_resource.key,
-            'crt' => new_resource.crt,
             'key_location' => new_resource.key_location,
             'crt_location' => new_resource.crt_location
           }
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
+
+        env_defaults = {
+          'JAVACMD' => '/usr/bin/java',
+          'LS_HOME' => home_dir,
+          'LS_OPTS' => nil,
+          'LS_HEAP_SIZE' => '500m',
+          'LS_JAVA_OPTS' => '-Djava.io.tmpdir=$HOME',
+          'LS_PIDFILE' => nil,
+          'LS_USER' => new_resource.user,
+          'LS_GROUP' => new_resource.group,
+          'LS_LOG_FILE' => nil,
+          'LS_USE_GC_LOGGING' => nil,
+          'LS_CONF_DIR' => nil,
+          'LS_OPEN_FILES' => '16384',
+          'LS_NICE' => '19'
+        }
 
         runit_service service_name do
           default_logger true
           owner new_resource.user
-          group new_resource.user
+          group new_resource.group
           cookbook new_resource.source
-          env new_resource.runit_env
+          env env_defaults.merge(new_resource.runit_env)
           options new_resource.runit_options.merge(
             'home_dir' => home_dir,
             'user' => new_resource.user,
@@ -70,6 +88,7 @@ class Chef
             'config_file' => 'config/logstash.conf'
           )
           action [:create, :enable]
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
       end
 
