@@ -4,7 +4,7 @@ elk CHANGELOG
 This file is used to list changes made in each version of the elk cookbook.
 
 
-0.2.4
+0.2.5
 -----
 - Jacob Dearing - Kibana looling more Release-Ready :+1:
 
