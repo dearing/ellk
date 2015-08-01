@@ -25,6 +25,7 @@ class Chef
           prefix_root new_resource.path
           url new_resource.url
           version new_resource.version
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         template "#{home_dir}/config/logging.yml" do
@@ -33,6 +34,7 @@ class Chef
           group new_resource.group
           mode '0644'
           cookbook new_resource.source
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         template "#{home_dir}/config/elasticsearch.yml" do
@@ -41,6 +43,7 @@ class Chef
           group new_resource.group
           mode '0644'
           cookbook new_resource.source
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         runit_service service_name do
@@ -55,6 +58,7 @@ class Chef
             'group' => new_resource.group
           )
           action [:create, :enable]
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
       end
 
