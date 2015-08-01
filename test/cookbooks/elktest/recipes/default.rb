@@ -27,7 +27,7 @@ logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
   key_location '/tmp/logstash.key'
   logstash_servers ['localhost:5043']
-  files [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
+  files [{ 'paths' => ['/var/log/messages', '/var/log/*log', '/var/log/kibana/current'], 'fields' => { 'type' => 'syslog' } }]
 end
 
 kibana 'default'

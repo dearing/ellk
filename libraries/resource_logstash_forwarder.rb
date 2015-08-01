@@ -23,7 +23,7 @@ class Chef
       attribute :port, kind_of: Integer, default: 5043
       attribute :timeout, kind_of: Integer, default: 15
       attribute :logstash_servers, kind_of: Array, default: ['localhost:5043']
-      attribute :files, kind_of: Array, default: nil
+      attribute :files, kind_of: Array, default: [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
 
       # runit usefulness
       attribute :runit_args, kind_of: Hash, default: {}
