@@ -3,7 +3,7 @@ ELK Cookbook
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
-manage elasticsearch, logstash, logstash-forwarder and kibana
+hack friendly: Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
 *note: expects consumer to install java and handle certs*
 
@@ -19,23 +19,22 @@ Requirements
 
 About
 ------------
-See [elktest](/test/cookbooks/elktest/recipes/default.rb) about how to use.
+The mindset for this creation is that logstash-forwarder is pleasant enough
+to cast out to all your resident nodes and since messing with templates is a pain,
+it allows you to just provide a hash to template out the configuration.  Making
+recipes easier to configure with.
 
+Next in the chain are the `logstash` nodes.  Typically, I'd imagine them to be 1:1 with all
+`elasticsearch` nodes also created by this LWRP; so `localhost` is a default output.  Otherwise,
+the matra of this design is if defaults don't work, `source` your consuming cookbook with your own
+templates copied from this cookbook.  Pass any optional config vars you want in your templaes with 
+`conf_options` attribute and hack away.
 
-LOGSTASH-FORWARDER
-------------
-Installs a go binary with source, checksum as user, group to /opt/logstash-forwarder.  
-The config file then is generated with certificate, key locations, an array of `logstash`
-servers and finally a array of hashes is converted to JSON for the `files` structure.
+This is hack friendly and mainly focused on getting you a framework
+to work by.  The heavy lifting comes from ARK and RUNIT cookbooks; everything else is template 
+manipulation.  Any discovery trickeness should be handled at the consuming recipe.
 
-```
-logstash_forwarder 'default' do
-  crt_location '/tmp/logstash.crt'
-  key_location '/tmp/logstash.key'
-  logstash_servers ['localhost:5043']
-  files [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
-end
-```
+See [elktest](/test/cookbooks/elktest/recipes/default.rb) as an example.
 
 Contributing
 ------------
