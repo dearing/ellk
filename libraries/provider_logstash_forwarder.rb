@@ -45,7 +45,7 @@ class Chef
             'key_location' => new_resource.key_location,
             'logstash_servers' => new_resource.logstash_servers,
             'timeout' => new_resource.timeout
-          }
+          }.merge(new_resource.conf_options)
           notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 

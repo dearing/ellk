@@ -37,6 +37,8 @@ class Chef
       attribute :verify_ssl, kind_of: [TrueClass, FalseClass], default: true
       attribute :version, kind_of: String, default: '4.1.1'
 
+      attribute :conf_options, kind_of: Hash, default: {}
+
       # RUNIT
       attribute :runit_args, kind_of: Hash, default: {}
       attribute :runit_options, kind_of: Hash, default: {}

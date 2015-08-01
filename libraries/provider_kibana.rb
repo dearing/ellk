@@ -56,7 +56,7 @@ class Chef
             'startup_timeout' => new_resource.startup_timeout,
             'user' => new_resource.user,
             'verify_ssl' => new_resource.verify_ssl
-          }
+          }.merge(new_resource.conf_options)
           notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 

@@ -42,6 +42,7 @@ class Chef
           group new_resource.group
           mode '0644'
           cookbook new_resource.source
+          variables options: new_resource.conf_options
           notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
@@ -55,7 +56,7 @@ class Chef
             'port' => new_resource.port,
             'key_location' => new_resource.key_location,
             'crt_location' => new_resource.crt_location
-          }
+          }.merge(new_resource.conf_options)
           notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
@@ -81,12 +82,13 @@ class Chef
           group new_resource.group
           cookbook new_resource.source
           env env_defaults.merge(new_resource.runit_env)
-          options new_resource.runit_options.merge(
+          options new_resource.conf_options.merge(
             'home_dir' => home_dir,
             'user' => new_resource.user,
             'group' => new_resource.group,
             'config_file' => 'config/logstash.conf'
           )
+
           action [:create, :enable]
           notifies :restart, "runit_service[#{service_name}]", :delayed
         end

@@ -25,6 +25,8 @@ class Chef
       attribute :logstash_servers, kind_of: Array, default: ['localhost:5043']
       attribute :files, kind_of: Array, default: [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
 
+      attribute :conf_options, kind_of: Hash, default: {}
+
       # runit usefulness
       attribute :runit_args, kind_of: Hash, default: {}
       attribute :runit_options, kind_of: Hash, default: {}
