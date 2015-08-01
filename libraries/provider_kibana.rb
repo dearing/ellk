@@ -2,13 +2,11 @@ class Chef
   class Provider
     class Kibana < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
-
-      # provides :kibana
-
+      provides :kibana if Chef::Provider.respond_to?(:provides)
       service_name = 'kibana'
 
       action :install do
-        user new_resource.user do 
+        user new_resource.user do
           system true
           shell '/sbin/nologin'
         end

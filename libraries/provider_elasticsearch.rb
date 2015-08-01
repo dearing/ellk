@@ -2,17 +2,14 @@ class Chef
   class Provider
     class Elasticsearch < Chef::Provider::LWRPBase
       include ELK::Helpers
-
       use_inline_resources if defined?(use_inline_resources)
-
-      # provides :elasticsearch
-
+      provides :elasticsearch if Chef::Provider.respond_to?(:provides)
       service_name = 'elasticsearch'
 
       action :install do
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
 
-        user new_resource.user do 
+        user new_resource.user do
           system true
           shell '/sbin/nologin'
         end

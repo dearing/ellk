@@ -2,14 +2,13 @@ class Chef
   class Provider
     class Logstash < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
-
-      # provides :logstash
+      provides :logstash if Chef::Provider.respond_to?(:provides)
 
       service_name = 'logstash'
       action :install do
         home_dir = "/opt/logstash/logstash-#{new_resource.version}"
 
-        user new_resource.user do 
+        user new_resource.user do
           system true
           shell '/sbin/nologin'
         end

@@ -2,14 +2,11 @@ class Chef
   class Provider
     class LogstashForwarder < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
-
-      # provides :logstash_forwarder
-
+      provides :logstash_forwarder if Chef::Provider.respond_to?(:provides)
       service_name = 'logstash-forwarder'
 
       action :install do
-        # TODO: make home folder working dir
-        user new_resource.user do 
+        user new_resource.user do
           system true
           shell '/sbin/nologin'
         end
@@ -18,23 +15,22 @@ class Chef
         end
 
         home_dir = "/opt/logstash-forwarder/logstash-forwarder-#{new_resource.version}"
-
-        # TODO: sloppy
         directory home_dir do
           owner new_resource.user
           group new_resource.group
           mode '0755'
           recursive true
           action :create
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
-        # TODO: react to os/arch
         remote_file "#{home_dir}/logstash-forwarder" do
           owner new_resource.user
           group new_resource.group
           mode '0755'
-          source 'https://download.elastic.co/logstash-forwarder/binaries/logstash-forwarder_linux_amd64'
-          checksum '5f49c5be671fff981b5ad1f8c5557a7e9973b24e8c73dbf0648326d400e6a4a1'
+          source new_resource.url
+          checksum new_resource.checksum
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         template "#{home_dir}/logstash-forwarder.conf" do
@@ -45,8 +41,12 @@ class Chef
           cookbook new_resource.source
           variables options: {
             'crt_location' => new_resource.crt_location,
-            'key_location' => new_resource.key_location
+            'files' => new_resource.files,
+            'key_location' => new_resource.key_location,
+            'logstash_servers' => new_resource.logstash_servers,
+            'timeout' => new_resource.timeout
           }
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         runit_service service_name do
@@ -68,10 +68,18 @@ class Chef
         runit_service service_name do
           action :stop
         end
+
+        ['/opt/logstash-forwarder',
+         '/etc/service/logstash-forwarder'
+        ].each do |dir|
+          directory dir do
+            recursive true
+            action :delete
+          end
+        end
       end
 
       ## SERVICE
-
       action :enable do
         service service_name do
           action :enable

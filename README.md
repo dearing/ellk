@@ -17,6 +17,26 @@ Requirements
 - some kind of java
 - see [metadata](/metadata.rb) for complexity
 
+About
+------------
+See [elktest](/test/cookbooks/elktest/recipes/default.rb) about how to use.
+
+
+LOGSTASH-FORWARDER
+------------
+Installs a go binary with source, checksum as user, group to /opt/logstash-forwarder.  
+The config file then is generated with certificate, key locations, an array of `logstash`
+servers and finally a array of hashes is converted to JSON for the `files` structure.
+
+```
+logstash_forwarder 'default' do
+  crt_location '/tmp/logstash.crt'
+  key_location '/tmp/logstash.key'
+  logstash_servers ['localhost:5043']
+  files [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
+end
+```
+
 Contributing
 ------------
 1. Fork the repository on Github
