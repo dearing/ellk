@@ -26,6 +26,7 @@ class Chef
       attribute :key_location, kind_of: String, default: '/etc/logstash/logstash.key'
 
       attribute :port, kind_of: Integer, default: 5043
+      attribute :conf_options, kind_of: Hash, default: {}
 
       # RUNIT
       attribute :runit_args, kind_of: Hash, default: {}
