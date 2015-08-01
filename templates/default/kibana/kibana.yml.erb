@@ -22,23 +22,23 @@ kibana_index: <%= @options['kibana_index'] %>
 # used by the Kibana server to perform maintence on the kibana_index at statup. Your Kibana
 # users will still need to authenticate with Elasticsearch (which is proxied thorugh
 # the Kibana server)
-# kibana_elasticsearch_username: <%= @options['kibana_elasticsearch_username'] %>
-# kibana_elasticsearch_password: <%= @options['kibana_elasticsearch_password'] %>
+<%= "kibana_elasticsearch_username: #{ @options['kibana_elasticsearch_username']}" if @options['kibana_elasticsearch_username'] -%>
+<%= "kibana_elasticsearch_password: #{ @options['kibana_elasticsearch_password']}" if @options['kibana_elasticsearch_password'] %>
 
 # If your Elasticsearch requires client certificate and key
-# kibana_elasticsearch_client_crt: <%= @options['kibana_elasticsearch_client_crt'] %>
-# kibana_elasticsearch_client_key: <%= @options['kibana_elasticsearch_client_key'] %>
+<%= "kibana_elasticsearch_client_crt: #{ @options['kibana_elasticsearch_client_crt']}" if @options['kibana_elasticsearch_client_crt'] -%>
+<%= "kibana_elasticsearch_client_key: #{ @options['kibana_elasticsearch_client_key']}" if @options['kibana_elasticsearch_client_key'] -%>
 
 # If you need to provide a CA certificate for your Elasticsarech instance, put
 # the path of the pem file here.
-# ca: /path/to/your/CA.pem
+<%= "ca: #{ @options['ca']}" if @options['ca'] -%>
 
 # The default application to load.
 default_app_id: <%= @options['default_app_id'] %>
 
 # Time in milliseconds to wait for elasticsearch to respond to pings, defaults to
 # request_timeout setting
-# ping_timeout: <%= @options['ping_timeout'] %>
+<%= "ping_timeout: #{ @options['ping_timeout']}" if @options['ping_timeout'] -%>
 
 # Time in milliseconds to wait for responses from the back end or elasticsearch.
 # This must be > 0
@@ -49,22 +49,22 @@ request_timeout: <%= @options['request_timeout'] %>
 shard_timeout: <%= @options['shard_timeout'] %>
 
 # Time in milliseconds to wait for Elasticsearch at Kibana startup before retrying
-# startup_timeout: <%= @options['elasticsearch_url'] %>
+<%= "startup_timeout: #{ @options['startup_timeout']}" if @options['startup_timeout'] -%>
 
 # Set to false to have a complete disregard for the validity of the SSL
 # certificate.
 verify_ssl: <%= @options['verify_ssl'] %>
 
 # SSL for outgoing requests from the Kibana Server (PEM formatted)
-# ssl_key_file: <%= @options['ssl_key_file'] %>
-# ssl_cert_file: <%= @options['ssl_cert_file'] %>
+<%= "ssl_key_file: #{ @options['ssl_key_file']}" if @options['ssl_key_file'] -%>
+<%= "ssl_cert_file: #{ @options['ssl_cert_file']}" if @options['ssl_cert_file'] -%>
 
 # Set the path to where you would like the process id file to be created.
-# pid_file: <%= @options['pid_file'] %>
+<%= "pid_file: #{ @options['pid_file']}" if @options['pid_file'] -%>
 
 # If you would like to send the log output to a file you can set the path below.
 # This will also turn off the STDOUT log output.
-# log_file: <%= @options['log_file'] %>
+<%= "log_file: #{ @options['log_file']}" if @options['log_file'] -%>
 
 # Plugins that are included in the build, and no longer found in the plugins/ folder
 bundled_plugin_ids:

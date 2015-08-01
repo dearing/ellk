@@ -7,6 +7,7 @@ class Chef
       default_action :install
       actions [:install, :remove, :enable, :disable, :restart, :start, :stop]
 
+      attribute :ca, kind_of: String, default: nil
       attribute :checksum, kind_of: String, default: '6f42d25f337fd49f38e2af81b9ab6e0c987a199a8c0b2e1410d072f812cb4520'
       attribute :default_app_id, kind_of: String, default: 'discover'
       attribute :elasticsearch_host, kind_of: String, default: '127.0.0.1'

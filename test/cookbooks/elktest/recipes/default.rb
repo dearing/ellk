@@ -33,4 +33,6 @@ logstash_forwarder 'default' do
   files [{ 'paths' => ['/var/log/messages', '/var/log/*log', '/var/log/kibana/current'], 'fields' => { 'type' => 'syslog' } }]
 end
 
-kibana 'default'
+kibana 'default' do
+  port 8080
+end
