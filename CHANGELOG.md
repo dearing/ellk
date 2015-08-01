@@ -6,6 +6,10 @@ This file is used to list changes made in each version of the elk cookbook.
 
 0.2.4
 -----
+- Jacob Dearing - Kibana looling more Release-Ready :+1:
+
+0.2.4
+-----
 - Jacob Dearing - Logstash kinda Release-Ready :+1:
 
 0.2.3

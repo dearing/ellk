@@ -6,6 +6,7 @@ class Chef
       service_name = 'kibana'
 
       action :install do
+        home_dir = "#{new_resource.path}/kibana-#{new_resource.version}"
         user new_resource.user do
           system true
           shell '/sbin/nologin'
@@ -23,9 +24,8 @@ class Chef
           prefix_root new_resource.path
           url new_resource.url
           version new_resource.version
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
-
-        home_dir = "#{new_resource.path}/kibana-#{new_resource.version}"
 
         template "#{home_dir}/config/kibana.yml" do
           source 'kibana/kibana.yml.erb'
@@ -34,6 +34,7 @@ class Chef
           mode '0644'
           cookbook new_resource.source
           variables options: {
+            'ca' => new_resource.ca,
             'default_app_id' => new_resource.default_app_id,
             'elasticsearch_preserve_host' => new_resource.elasticsearch_preserve_host,
             'elasticsearch_url' => new_resource.elasticsearch_url,
@@ -56,6 +57,7 @@ class Chef
             'user' => new_resource.user,
             'verify_ssl' => new_resource.verify_ssl
           }
+          notifies :restart, "runit_service[#{service_name}]", :delayed
         end
 
         # RUNIT
