@@ -3,6 +3,9 @@ elk CHANGELOG
 
 This file is used to list changes made in each version of the elk cookbook.
 
+0.3.0
+-----
+- Jacob Dearing - Release-Ready for feedback. :8ball: 
 
 0.2.5
 -----
