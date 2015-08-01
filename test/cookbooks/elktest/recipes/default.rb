@@ -21,6 +21,7 @@ elasticsearch 'default'
 logstash 'default' do
   crt_location '/tmp/logstash.crt'
   key_location '/tmp/logstash.key'
+  source 'elktest'
 end
 
 logstash_forwarder 'default' do
