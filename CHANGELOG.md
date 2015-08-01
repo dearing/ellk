@@ -4,6 +4,10 @@ elk CHANGELOG
 This file is used to list changes made in each version of the elk cookbook.
 
 
+0.2.4
+-----
+- Jacob Dearing - Logstash kinda Release-Ready :+1:
+
 0.2.3
 -----
 - Jacob Dearing - Logstash-Forwarder Release-Ready :+1:

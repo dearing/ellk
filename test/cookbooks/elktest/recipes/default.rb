@@ -18,16 +18,19 @@ end
 
 elasticsearch 'default'
 
+bonus_env = { 'HELLO' => 'WORLD', 'LS_USER' => 'kibana' } # for testing sake
 logstash 'default' do
   crt_location '/tmp/logstash.crt'
   key_location '/tmp/logstash.key'
+  source 'elktest'
+  runit_env bonus_env
 end
 
 logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
   key_location '/tmp/logstash.key'
   logstash_servers ['localhost:5043']
-  files [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
+  files [{ 'paths' => ['/var/log/messages', '/var/log/*log', '/var/log/kibana/current'], 'fields' => { 'type' => 'syslog' } }]
 end
 
 kibana 'default'

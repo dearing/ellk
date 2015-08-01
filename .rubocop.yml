@@ -3,3 +3,6 @@ LineLength:
 
 Documentation:
   Enabled: false
+
+ClassLength :
+  Enabled: false
