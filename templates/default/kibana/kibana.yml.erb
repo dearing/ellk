@@ -42,7 +42,7 @@ default_app_id: <%= @options['default_app_id'] %>
 
 # Time in milliseconds to wait for responses from the back end or elasticsearch.
 # This must be > 0
-request_timeout: <%= @options['request_timeout'] %>
+<%= "request_timeout: #{ @options['request_timeout']}" if @options['request_timeout'] -%>
 
 # Time in milliseconds for Elasticsearch to wait for responses from shards.
 # Set to 0 to disable.
@@ -53,7 +53,7 @@ shard_timeout: <%= @options['shard_timeout'] %>
 
 # Set to false to have a complete disregard for the validity of the SSL
 # certificate.
-verify_ssl: <%= @options['verify_ssl'] %>
+<%= "verify_ssl: #{ @options['verify_ssl']}" if @options['verify_ssl'] -%>
 
 # SSL for outgoing requests from the Kibana Server (PEM formatted)
 <%= "ssl_key_file: #{ @options['ssl_key_file']}" if @options['ssl_key_file'] -%>

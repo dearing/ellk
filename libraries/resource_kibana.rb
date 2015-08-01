@@ -21,13 +21,13 @@ class Chef
       attribute :kibana_elasticsearch_password, kind_of: String, default: nil
       attribute :kibana_elasticsearch_username, kind_of: String, default: nil
       attribute :kibana_index, kind_of: String, default: '.kibana'
-      attribute :log_file, kind_of: Integer, default: './kibana.log'
+      attribute :log_file, kind_of: Integer, default: nil
       attribute :path, kind_of: String, default: '/opt/kibana'
-      attribute :pid_file, kind_of: String, default: '/var/run/kibana.pid'
+      attribute :pid_file, kind_of: String, default: nil
       attribute :ping_timeout, kind_of: Integer, default: 1500
       attribute :port, kind_of: [String, Integer], default: 3000
       attribute :request_timeout, kind_of: Integer, default: 30_000
-      attribute :shard_timeout, kind_of: Integer, default: 0
+      attribute :shard_timeout, kind_of: Integer, default: 15
       attribute :source, kind_of: String, default: 'elk'
       attribute :ssl_cert_file, kind_of: String, default: nil
       attribute :ssl_key_file, kind_of: String, default: nil
