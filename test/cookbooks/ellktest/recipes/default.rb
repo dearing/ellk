@@ -1,5 +1,21 @@
 # test a single node with all four projects
-%w( tar nano htop java-1.8.0-openjdk-headless ).each do |pkg|
+
+packages = %w( tar nano htop )
+
+case node[:platform_family]
+when 'debian'
+  include_recipe 'apt'
+  packages << 'openjdk-7-jre-headless'
+when 'rhel'
+  include_recipe 'yum'
+  if node[:platform_version].to_f > 5
+    packages << 'java-1.8.0-openjdk-headless'
+  else
+    packages << 'java-1.7.0-openjdk-headless'
+  end
+end
+
+packages.each do |pkg|
   package pkg
 end
 
@@ -18,6 +34,11 @@ end
 
 elasticsearch 'default' do
   datadir '/tmp/es_datadir'
+end
+
+es_server = search(:node, 'tags:elasticsearch')
+es_server.each do |es|
+  Chef::Log.info("#{es["name"]} has IP address #{es["ipaddress"]}")
 end
 
 bonus_env = { 'HELLO' => 'WORLD', 'LS_USER' => 'kibana' } # for testing sake

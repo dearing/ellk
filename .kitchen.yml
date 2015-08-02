@@ -7,9 +7,9 @@
 #    publish_all: true
 
 platforms:
-#- name: centos-5
+- name: centos-5
 - name: centos-6
-#- name: centos-7
+- name: centos-7
 #- name: fedora
 #- name: ubuntu-12
 #  run_list:
