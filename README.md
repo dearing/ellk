@@ -11,7 +11,7 @@ Requirements
 ------------
 - chef 11+
 - some kind of java
-- see [metadata](https://github.com/dearing/ellk/metadata.rb) for complexity
+- see [metadata](https://github.com/dearing/ellk/blob/master/metadata.rb) for complexity
 
 About
 ------------
@@ -26,7 +26,7 @@ The default installations are:
 ```
 You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag is by. See the resource files in the libraries folder for the accepted attributes.
 
-See [ellktest](https://github.com/dearing/ellk/test/cookbooks/ellktest/recipes/default.rb) for examples and flexibility..
+See [ellktest](https://github.com/dearing/ellk/blob/master/test/cookbooks/ellktest/recipes/default.rb) for examples and flexibility..
 
 TODO
 ------------
