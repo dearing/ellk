@@ -76,6 +76,7 @@ class Chef
           'LS_NICE' => '19'
         }
 
+        # TODO: signal for changes
         runit_service service_name do
           default_logger true
           owner new_resource.user
@@ -88,9 +89,7 @@ class Chef
             'group' => new_resource.group,
             'config_file' => 'config/logstash.conf'
           )
-
           action [:create, :enable]
-          # notifies :restart, "runit_service[#{service_name}]", :delayed
         end
       end
 

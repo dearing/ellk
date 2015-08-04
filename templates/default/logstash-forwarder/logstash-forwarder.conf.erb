@@ -3,7 +3,7 @@
 {
   "network": {
     "servers": <%= @options['logstash_servers'].to_json %>,
-#    "ssl key": "<%= @options['key_location'] %>",
+    <%= '"ssl key": "'+ @options['key_location'] +'",' if @options['key_location'] -%>
     "ssl ca": "<%= @options['crt_location'] %>",
     "timeout": <%= @options['timeout'] %>
   },

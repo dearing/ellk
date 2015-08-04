@@ -6,10 +6,9 @@ description 'Library to handle Elasticsearch, Logstash, Logstash-Forwarder & Kib
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version '0.3.2'
 
-# retsricted only to runit and ark really
 %w(ubuntu debian centos redhat amazon scientific oracle enterpriseenterprise).each do |os|
   supports os
 end
 
 depends 'ark'
-depends 'runit'
+depends 'runit', '= 1.5.18' # until https://github.com/hw-cookbooks/runit/issues/142
