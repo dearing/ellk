@@ -90,7 +90,7 @@ class Chef
           )
 
           action [:create, :enable]
-          notifies :restart, "runit_service[#{service_name}]", :delayed
+          # notifies :restart, "runit_service[#{service_name}]", :delayed
         end
       end
 

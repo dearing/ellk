@@ -33,7 +33,7 @@ file '/tmp/logstash.crt' do
   content logstash_crt
 end
 
-## ELASTICSEARCH                                                        
+## ELASTICSEARCH
 elasticsearch 'default' do
   datadir '/tmp/es_datadir'
   version '1.7.1'
@@ -60,7 +60,7 @@ logstash_forwarder 'default' do
   files [{ 'paths' => ['/var/log/messages', '/var/log/*log', '/var/log/kibana/current'], 'fields' => { 'type' => 'syslog' } }]
 end
 
-## KIBANA                               
+## KIBANA
 kibana 'default' do
   port 8080
 end
