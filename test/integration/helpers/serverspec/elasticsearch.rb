@@ -6,7 +6,7 @@ shared_examples 'elasticsearch' do
   describe command('curl http://localhost:9200/') do
     its(:stdout) { should contain '"status" : 200,' }
   end
-  describe command('curl -s http://localhost:9200/_cluster/state|jq .cluster_name') do
+  describe command('curl -s http://localhost:9200/_cluster/state') do
     its(:stdout) { should contain 'elasticsearch' } # node name
   end
 

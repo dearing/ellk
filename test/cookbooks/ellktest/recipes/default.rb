@@ -1,4 +1,4 @@
-packages = %w( tar nano htop jq )
+packages = %w( tar nano htop )
 
 case node[:platform_family]
 when 'debian'
