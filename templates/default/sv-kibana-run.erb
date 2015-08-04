@@ -4,7 +4,6 @@
 
 ENVDIR=$PWD
 
-
 cd <%= @options['home_dir'] %>
 exec 2>&1
 exec chpst -e $ENVDIR -u <%= @options['user'] %>:<%= @options['group'] %> ./bin/kibana -c <%= @options['config_file'] %>

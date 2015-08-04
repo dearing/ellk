@@ -15,4 +15,3 @@ shared_examples 'logstash_forwarder' do
     its(:content) { should contain 'Launching harvester on new file:' }
   end
 end
-
