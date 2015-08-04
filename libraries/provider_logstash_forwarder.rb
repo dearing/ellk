@@ -42,7 +42,7 @@ class Chef
           variables options: {
             'crt_location' => new_resource.crt_location,
             'files' => new_resource.files,
-            'key_location' => new_resource.key_location,
+            # 'key_location' => new_resource.key_location,
             'logstash_servers' => new_resource.logstash_servers,
             'timeout' => new_resource.timeout
           }.merge(new_resource.conf_options)

@@ -9,17 +9,13 @@
 platforms:
 - name: centos-5
 - name: centos-6
-- name: centos-7
-#- name: fedora
-#- name: ubuntu-12
-#  run_list:
-#  - recipe[apt]
-#- name: ubuntu-14
-#  run_list:
-#  - recipe[apt]
-#- name: debian
-#  run_list:
-#  - recipe[apt]
+- name: ubuntu-12
+- name: ubuntu-14
+- name: ubuntu-15
+
+transport:
+  name: ssh
+  compression: none
 
 provisioner:
   name: chef_zero
