@@ -22,8 +22,8 @@ class Chef
 
       attribute :path, kind_of: String, default: '/opt/logstash'
 
-      attribute :crt_location, kind_of: String, default: '/etc/logstash/logstash.crt'
-      attribute :key_location, kind_of: String, default: '/etc/logstash/logstash.key'
+      attribute :crt_location, kind_of: String, required: true, default: '/etc/logstash/logstash.crt'
+      attribute :key_location, kind_of: String, required: true, default: '/etc/logstash/logstash.key'
 
       attribute :port, kind_of: Integer, default: 5043
       attribute :conf_options, kind_of: Hash, default: {}

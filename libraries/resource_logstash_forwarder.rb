@@ -19,7 +19,7 @@ class Chef
 
       # configuration
       attribute :crt_location, kind_of: String, required: true, default: nil
-      attribute :key_location, kind_of: String, required: true, default: nil
+      attribute :key_location, kind_of: String, required: false, default: nil
       attribute :port, kind_of: Integer, default: 5043
       attribute :timeout, kind_of: Integer, default: 15
       attribute :logstash_servers, kind_of: Array, default: ['localhost:5043']
