@@ -3,12 +3,12 @@ shared_examples 'elasticsearch' do
     its(:stdout) { should contain 'run: elasticsearch' }
   end
 
-  describe command('curl http://localhost:9200/') do
-    its(:stdout) { should contain '"status" : 200,' }
-  end
-  describe command('curl -s http://localhost:9200/_cluster/state') do
-    its(:stdout) { should contain 'elasticsearch' } # node name
-  end
+#  describe command('curl http://localhost:9200/') do
+#    its(:stdout) { should contain '"status" : 200,' }
+#  end
+#  describe command('curl -s http://localhost:9200/_cluster/state') do
+#    its(:stdout) { should contain 'elasticsearch' } # node name
+#  end
 
   describe file('/etc/service/elasticsearch/env/ES_USER') do
     it { should be_file }
