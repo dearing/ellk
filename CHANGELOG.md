@@ -3,6 +3,9 @@
 - [supermarket]
 
 # Change Log
+## [unreleased]
+#### Changed
+- cleaned up changelog
 
 ## [v0.3.3]
 #### Changed
@@ -18,6 +21,7 @@
 ## [v0.3.1] 
 #### Submission for feedback
 
+[unreleased]: https://github.com/dearing/ellk/compare/v0.3.3...HEAD
 [v0.3.3]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.3
 [v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.1...v0.3.2
 [v0.3.1]: https://github.com/dearing/ellk/compare/ac55f121fd95afcd0708c9eaeff04474ceb527fe...v0.3.1
