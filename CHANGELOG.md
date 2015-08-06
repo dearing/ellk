@@ -18,8 +18,8 @@
 ## [v0.3.1] 
 ### Submission for feedback
 
-[v0.3.3]: https://github.com/dearing/ellk/compare/v3.2.0...v0.3.3
-[v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.1
-[v0.3.1]: https://github.com/dearing/ellk/compare/v0.3.1...v0.3.2
+[v0.3.3]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.3
+[v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.1...v0.3.2
+[v0.3.1]: https://github.com/dearing/ellk/compare/ac55f121fd95afcd0708c9eaeff04474ceb527fe...v0.3.1
 [releases]: https://github.com/dearing/ellk/releases
 [supermarket]: https://supermarket.chef.io/cookbooks/ellk
