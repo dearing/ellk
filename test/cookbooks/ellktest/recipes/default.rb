@@ -22,7 +22,7 @@ link '/usr/local/bin/sv' do
   to '/usr/bin/sv'
 end
 
-# create certs (subject = localhost)
+# create certs (SN = localhost)
 secrets = Chef::DataBagItem.load('secrets', 'logstash')
 logstash_key = Base64.decode64(secrets['key'])
 file '/tmp/logstash.key' do
@@ -55,9 +55,8 @@ end
 ## LOGSTASH-FORWARDER
 logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
-  # key_location '/tmp/logstash.key'
   logstash_servers ['localhost:5043']
-  files [{ 'paths' => ['/var/log/messages', '/var/log/*log', '/var/log/kibana/current'], 'fields' => { 'type' => 'syslog' } }]
+  files [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
 end
 
 ## KIBANA

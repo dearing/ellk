@@ -13,10 +13,6 @@ platforms:
 - name: ubuntu-14
 - name: ubuntu-15
 
-transport:
-  name: ssh
-  compression: none
-
 provisioner:
   name: chef_zero
   require_chef_omnibus: '11'
