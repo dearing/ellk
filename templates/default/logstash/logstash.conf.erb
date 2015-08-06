@@ -11,12 +11,51 @@ input {
 }
 
 filter {
-## ADD FILTERS HERE 
+ if [type] == "syslog" {
+    grok {
+      overwrite => "message"
+      match => [
+        "message",
+        "%{SYSLOGTIMESTAMP:timestamp} %{IPORHOST:host} (?:%{PROG:program}(?:\[%{POSINT:pid}\])?: )?%{GREEDYDATA:message}"
+      ]
+    }
+    syslog_pri { }
+    date {
+      # season to taste for your own syslog format(s)
+      match => [
+        "timestamp",
+        "MMM  d HH:mm:ss",
+        "MMM dd HH:mm:ss",
+        "ISO8601"
+      ]
+    }
+  }
+
+  if [type] == "apache-access" {
+      grok {
+        patterns_dir => ["./config/patterns"]
+        match => ["message", "%{COMBINEDAPACHELOG}" ]
+      }
+      date {
+        match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z", "dd/MMM/yyyy:HH:mm:ss" ]
+      }
+  }
+
+  if [type] == "nginx-access" {
+      grok {
+        patterns_dir => ["./config/patterns"]
+        match => ["message", "%{NGINXACCESS}" ]
+      }
+      date {
+        match => [ "timestamp", "dd/MMM/yyyy:HH:mm:ss Z", "dd/MMM/yyyy:HH:mm:ss" ]
+      }
+  }
 }
+
 
 # TODO: logstash doesn't convert 1:1 with ruby or json, hash passing will have to wait
 # for now we consider all elasticsearch nodes have a logstash service on the same machine
 output {
   elasticsearch { host => localhost}
-  stdout { codec => rubydebug }
+  stdout { codec => json }
 }

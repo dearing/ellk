@@ -1,35 +1,25 @@
-ellk CHANGELOG
-=============
+# Releases
+- [releases]
+- [supermarket]
 
-This file is used to list changes made in each version of the ellk cookbook.
+# Change Log
 
+## [v0.3.3]
+### Changed
+- better config defaults for logstash & logstash-forwader
+- logstash-forwarder resource no longer requires a key
+- logstash resource now requires both a key and cert
 
-0.3.2
------
-- Jacob Dearing - Cosmtic updates and Berkshelf pinning to avoid bug in Runit
-			    - https://github.com/dearing/ellk/issues/22
+## [v0.3.2] 
+### Changed
+- cosmtic updates
+- pinning  runit to v1.5.18; see https://github.com/hw-cookbooks/runit/issues/142
 
-0.3.0
------
-- Jacob Dearing - Release-Ready for feedback. :8ball: 
+## [v0.3.1] 
+### Submission for feedback
 
-0.2.5
------
-- Jacob Dearing - Kibana looking more Release-Ready :+1:
-
-0.2.4
------
-- Jacob Dearing - Logstash kinda Release-Ready :+1:
-
-0.2.3
------
-- Jacob Dearing - Logstash-Forwarder Release-Ready :+1:
-
-0.2.0
------
-- Jacob Dearing - Pre-Release
-
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+[v0.3.3]: https://github.com/dearing/ellk/compare/v3.2.0...v0.3.3
+[v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.1
+[v0.3.1]: https://github.com/dearing/ellk/compare/v0.3.1...v0.3.2
+[releases]: https://github.com/dearing/ellk/releases
+[supermarket]: https://supermarket.chef.io/cookbooks/ellk

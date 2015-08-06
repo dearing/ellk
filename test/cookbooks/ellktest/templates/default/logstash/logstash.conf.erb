@@ -11,22 +11,31 @@ input {
 }
 
 filter {
-  if [type] == "syslog" {
+ if [type] == "syslog" {
     grok {
-      match => { "message" => "%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:syslog_program}(?:\[%{POSINT:syslog_pid}\])?: %{GREEDYDATA:syslog_message}" }
-      add_field => [ "received_at", "%{@timestamp}" ]
-      add_field => [ "received_from", "%{host}" ]
+      overwrite => "message"
+      match => [
+        "message",
+        "%{SYSLOGTIMESTAMP:timestamp} %{IPORHOST:host} (?:%{PROG:program}(?:\[%{POSINT:pid}\])?: )?%{GREEDYDATA:message}"
+      ]
     }
     syslog_pri { }
     date {
-      match => [ "syslog_timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+      # season to taste for your own syslog format(s)
+      match => [
+        "timestamp",
+        "MMM  d HH:mm:ss",
+        "MMM dd HH:mm:ss",
+        "ISO8601"
+      ]
     }
   }
 }
+
 
 # TODO: logstash doesn't convert 1:1 with ruby or json, hash passing will have to wait
 # for now we consider all elasticsearch nodes have a logstash service on the same machine
 output {
   elasticsearch { host => localhost}
-  stdout { codec => rubydebug }
+  stdout { codec => json }
 }

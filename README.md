@@ -18,12 +18,11 @@ About
 The heavy lifting comes from [ARK](https://github.com/burtlo/ark) and [RUNIT](https://github.com/hw-cookbooks/runit) cookbooks with a focus around being able to pass optional configurations via merged hashsets for templates and environment variable sets.  Meditate on the idea that this library is simply providing a common installation and templating for the 4 projects.  It expects you to do all the tweaking and configuring as needed because attempting to account for all is untenable.  The opinion is then that you would want logstash-forwarder on all nodes communicating to your logstash endpoints.  Logstash-forwarder is overloaded to accept a hash for the logs it will harvert as an attribute making it easy to use in recipes without fumbling with templates. The defaults then expect that logstash would remain resident along all elasticsearch nodes which finally has an interface via kibana.  Beyond this, inheriting templates and customizing the configurations and security is up to you.
 
 The default installations are:
-```
-  elasticsearch      = 1.7.0 // JAVA
-  logstash           = 1.5.3 // RUBY
-  logstash-forwarder = 0.4.0 // GO
-  kibana             = 4.1.1 // NODEJS
-```
+-   elasticsearch-1.7.0  *requires java*
+-   logstash-1.5.3 *requires cert*
+-   logstash-forwarder-0.4.0 *requires cert*
+-   kibana-4.1.1
+
 You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag is by. See the resource files in the libraries folder for the accepted attributes.
 
 See [ellktest](https://github.com/dearing/ellk/blob/master/test/cookbooks/ellktest/recipes/default.rb) for examples and flexibility..
