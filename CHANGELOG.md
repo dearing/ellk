@@ -12,11 +12,11 @@
 
 ## [v0.3.2] 
 ### Changed
-- Cosmtic updates and Berkshelf pinning to avoid bug in Runit; see #22
+- cosmtic updates
+- pinning  runit to v1.5.18; see https://github.com/hw-cookbooks/runit/issues/142
 
 ## [v0.3.1] 
-### Changed
-- Submission for feedback
+### Submission for feedback
 
 [unreleased]: https://github.com/dearing/ellk/compare/v3.2.0...HEAD
 [v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.3
