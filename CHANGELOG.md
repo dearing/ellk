@@ -1,22 +1,22 @@
-# Releases
+# ELLK
 - [releases]
 - [supermarket]
 
 # Change Log
 
 ## [v0.3.3]
-### Changed
+#### Changed
 - better config defaults for logstash & logstash-forwader
 - logstash-forwarder resource no longer requires a key
 - logstash resource now requires both a key and cert
 
 ## [v0.3.2] 
-### Changed
-- cosmtic updates
-- pinning  runit to v1.5.18; see https://github.com/hw-cookbooks/runit/issues/142
+#### Changed
+- various cosmetic updates
+- pinning runit to v1.5.18; see https://github.com/hw-cookbooks/runit/issues/142
 
 ## [v0.3.1] 
-### Submission for feedback
+#### Submission for feedback
 
 [v0.3.3]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.3
 [v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.1...v0.3.2
