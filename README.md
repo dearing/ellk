@@ -43,7 +43,7 @@ logstash_forwarder 'default' do
   }]
 end
 ```
-The clever will note that this allows one to build up a array of `paths` that finally can be passed as an attribute for [logstash-forwarder] to be configured to harvest and ship out.
+*The clever will note that this allows one to build up a array of `paths` that finally can be passed as an attribute for [logstash-forwarder] to be configured to harvest and ship out.*
 
 Should you want them, standing up logstash and elasticsearch is just as easy with everything exposed to override defaults:
 
