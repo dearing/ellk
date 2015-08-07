@@ -4,6 +4,7 @@
 #### Changed
 - cleaned up changelog
 - updated readme
+- better examples in ellktest
 
 ## [v0.3.3]
 #### Changed
