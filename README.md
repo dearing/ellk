@@ -24,7 +24,7 @@ This cookbook provides a modern Chef approach to installing and configuring the 
 The opinion of this design is then that remote systems get a shipper in the form of logstash-forwarder that does nothing but harvest logs and forward them to logstash endpoints.  It is a Go static binary so there is no fuss for remote nodes.  Simply unpack, configure and run.  The `logstash-forwarder` resource is designed to accept a hash that is eventually converted to the json configuration for the program.  This allows you to simply call it in a scope of a node for its logs.
 
 ```ruby
-## install LOGSTASH-FORWARDER configured for my syslogs
+## install LOGSTASH-FORWARDER and configure to watch various logs
 logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
   logstash_servers ['localhost:5043']
