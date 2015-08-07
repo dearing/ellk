@@ -87,7 +87,7 @@ kibana 'default' do
   port 8080
 end
 
-## We may want to visualize Kibana's logs and pretend pretend it is in a prod environment
+## We may want to visualize Kibana's logs and pretend it is in a prod environment
 logs <<
   {
     'paths' => ['/var/log/kibana/current'],
