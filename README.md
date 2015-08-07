@@ -43,7 +43,18 @@ logstash_forwarder 'default' do
   }]
 end
 ```
-*The clever will note that this allows one to build up a array of `paths` that finally can be passed as an attribute for [logstash-forwarder] to be configured to harvest and ship out.*
+The clever will note that this allows one to build up a array that finally can be passed as an attribute for [logstash-forwarder] to be configured by for harvesting.
+
+```
+logstash_forwarder 'default' do
+  crt_location '/tmp/logstash.crt'
+  logstash_servers ['localhost:5043']
+  files node['my_fancy_log_collection']
+end
+```
+
+>The power is yours!
+>> Captain Planet
 
 Should you want them, standing up logstash and elasticsearch is just as easy with everything exposed to override defaults:
 
