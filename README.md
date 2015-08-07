@@ -124,6 +124,21 @@ Default installed versions
 
 You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag it by. See the resource files in the libraries folder for the accepted attributes and [ellktest] for examples and flexibility..
 
+Thor
+------------
+```
+Commands:
+  thor utils:create_bag      # create a Chef data bag of cert and key
+  thor utils:create_cert     # create a certificate with a key
+  thor utils:create_key      # create a RSA 2048 key
+  thor utils:help [COMMAND]  # Describe available commands or one specific command
+  thor utils:quick_bag       # executes create_cert, create_key & create_bag with defaults
+
+Options:
+  [--fields=FIELDS]
+                     # Default: CN=localhost
+```
+
 TODO & Help Wanted
 ------------
  - see [issues]

@@ -5,3 +5,7 @@ group :lint do
   gem 'foodcritic-rackspace-rules'
   gem 'rubocop'
 end
+
+group :utils do
+  gem 'thor'
+end
