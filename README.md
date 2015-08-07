@@ -3,12 +3,11 @@ ELLK Cookbook
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
-[![Cookbook Version](https://img.shields.io/cookbook/v/ELLk.svg)](https://supermarket.chef.io/cookbooks/ellk)
 [![Circle CI](https://circleci.com/gh/dearing/ellk/tree/master.svg?style=svg)](https://circleci.com/gh/dearing/ellk/tree/master)
 
 Hack friendly, Chef library to manage Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
-*note: expects consumer to install java and handle certs and manipulate firewalls*
+*note: expects consumer to install java, handle certs and manipulate firewalls*
 
 Requirements
 ------------
@@ -26,7 +25,7 @@ About
 ------------
 This cookbook provides a modern Chef approach to installing and configuring the four [elastic] products that make up an ELK stack with the company's binary artifacts.  Using [ark] to fetch those remote artifacts and [runit] to handle the service allows us to side step the nuanced vulgarity of competing package managers, driving down the complexity of this cookbook.  This means faster updates, less angles for bugs and a guard against feature creep.  So the flexibity is that this library won't be upset if you don't use the whole stack or any combination within.  Call what you need, configure how you like and get back to [#chefops], your way.
 
-The opinion of this design is then that remote systems get a shipper in the form of [logstash-forwarder] that does nothing but harvest logs and forward them to logstash endpoints.  It is a Go static binary so there is no fuss for the host OS.  Simply unpack, configure and run.  The `logstash-forwarder` resource is designed to accept a hash that is eventually converted to the json configuration for the program.  This allows you to simply call it in a scope of a node for its logs.
+The opinion of this design is then that remote systems get a shipper in the form of [logstash-forwarder] that does nothing but harvest logs and forward them to logstash endpoints.  It is a Go static binary so there is no fuss for the host OS.  Simply unpack, configure and run.  The `logstash-forwarder` resource is designed to accept an array of hashes that is eventually converted to the json configuration for the program.  This allows you to simply call it in a scope of a node for its logs.
 
 ```ruby
 ## install LOGSTASH-FORWARDER and configure to watch various logs
@@ -43,7 +42,7 @@ logstash_forwarder 'default' do
   }]
 end
 ```
-The clever will note that this allows one to build up a array that finally can be passed as an attribute for [logstash-forwarder] to be configured by for harvesting.
+The clever will note that this allows one to build up an array that finally can be passed as an attribute for [logstash-forwarder] to be configured by for harvesting.
 
 ```
 logstash_forwarder 'default' do
@@ -52,9 +51,6 @@ logstash_forwarder 'default' do
   files node['my_fancy_log_collection']
 end
 ```
-
->The power is yours!
->> Captain Planet
 
 Should you want them, standing up logstash and elasticsearch is just as easy with everything exposed to override defaults:
 
