@@ -28,11 +28,10 @@ The opinion of this design is then that remote systems get a shipper in the form
 logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
   logstash_servers ['localhost:5043']
-  files [
-    {
-      'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => "syslog-#{node.chef_environment}" }
-    }
-  ]
+  files [{
+  'paths' => ['/var/log/messages', '/var/log/*log'],
+  'fields' => { 'type' => 'syslog', 'chef_node' => node.name, 'chef_env' => node.chef_environment }
+  }]
 end
 ```
 
