@@ -32,7 +32,24 @@ logstash_forwarder 'default' do
 end
 ```
 
-The logstash endpoint should then be configured to react to shipped logs by the type:
+Should you want them, standing up logstash and elasticsearch is just as easy with everything exposed to override defaults:
+
+```ruby
+## ELASTICSEARCH
+elasticsearch 'default' do
+  datadir '/tmp/es_datadir'
+end
+```
+
+```ruby
+logstash 'default' do
+  crt_location '/tmp/logstash.crt'
+  key_location '/tmp/logstash.key'
+  source 'awesome_cookbook'
+end
+```
+
+The logstash endpoint should then be configured with templates to react to shipped logs by the type:
 
 ```
 filter {
@@ -49,7 +66,7 @@ filter {
 }
 ```
 
-At this point you could have and [elasticsearch] product on the same node or configure logstash to send it remotely such as another node or even a service.
+At this point you could have an elasticsearch product on the same node configure logstash to store data with some remote service like http://objectrocket.com/elasticsearch.
 
 ```
 output {
@@ -75,7 +92,7 @@ Defaults
 [logstash-forwarder] | 0.4.0
 [kibana] | 4.1.1
 
-You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag it by. See the resource files in the libraries folder for the accepted attributes.  See [ellktest] for examples and flexibility..
+You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag it by. See the resource files in the libraries folder for the accepted attributes and [ellktest] for examples and flexibility..
 
 TODO & Help Wanted
 ------------
