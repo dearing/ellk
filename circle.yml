@@ -19,9 +19,7 @@ dependencies:
 
 test:
   override:
-    - bundle exec rake style:
+    - "rubocop":
         timeout: 120
-    - bundle exec rake spec:
+    - "foodcritic ." :
         timeout: 120
-    - bundle exec rake integration:cloud:
-        timeout: 600
