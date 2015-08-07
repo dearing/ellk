@@ -30,7 +30,11 @@ logstash_forwarder 'default' do
   logstash_servers ['localhost:5043']
   files [{
   'paths' => ['/var/log/messages', '/var/log/*log'],
-  'fields' => { 'type' => 'syslog', 'chef_node' => node.name, 'chef_env' => node.chef_environment }
+    'fields' => { 
+      'type' => 'syslog', 
+      'chef_node' => node.name, 
+      'chef_env' => node.chef_environment 
+    }
   }]
 end
 ```
