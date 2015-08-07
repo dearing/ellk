@@ -52,9 +52,6 @@ logstash_forwarder 'default' do
 end
 ```
 
->The power is yours!
->> Captain Planet
-
 Should you want them, standing up logstash and elasticsearch is just as easy with everything exposed to override defaults:
 
 ```ruby
