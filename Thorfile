@@ -27,7 +27,7 @@ class Utils < Thor
     cert.version = 2
     cert.serial = 0
     cert.not_before = Time.now
-    cert.not_after = Time.now + 3600
+    cert.not_after = Time.now + 3.15569e8
     cert.public_key = key.public_key
     ext = OpenSSL::X509::ExtensionFactory.new
     ext.subject_certificate = cert
