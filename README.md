@@ -88,7 +88,8 @@ output {
 Finally, Kibana interfaces with elasticsearch to perform queries against it creating those gorgeous charts and graphs everyone swoons over.  The defaults roll out executing elasticsearch queries with localhost but everything is availiable to configure from provided attributes should you need them.
 
 ```ruby
-## install KIBANA and configure for port 8080, maybe we'll proxy to it from NGINX with some auth_basic?
+## install KIBANA and configure for port 8080
+# FIXME: Nginx with some auth_basic
 kibana 'default' do
   port 8080
 end
