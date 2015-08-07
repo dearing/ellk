@@ -24,7 +24,7 @@ This cookbook provides a modern Chef approach to installing and configuring the 
 The opinion of this design is then that remote systems get a shipper in the form of logstash-forwarder that does nothing but harvest logs and forward them to logstash endpoints.  It is a Go static binary so there is no fuss for remote nodes.  Simply unpack, configure and run.  The `logstash-forwarder` resource is designed to accept a hash that is eventually converted to the json configuration for the program.  This allows you to simply call it in a scope of a node for its logs.
 
 ```ruby
-## LOGSTASH-FORWARDER
+## install LOGSTASH-FORWARDER configured for my syslogs
 logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
   logstash_servers ['localhost:5043']
@@ -35,13 +35,14 @@ end
 Should you want them, standing up logstash and elasticsearch is just as easy with everything exposed to override defaults:
 
 ```ruby
-## ELASTICSEARCH
+## install ELASTICSEARCH and configure to use tmp for data storage
 elasticsearch 'default' do
   datadir '/tmp/es_datadir'
 end
 ```
 
 ```ruby
+## install LOGSTASH and source my awesome_cookbook's templates instead
 logstash 'default' do
   crt_location '/tmp/logstash.crt'
   key_location '/tmp/logstash.key'
@@ -66,7 +67,7 @@ filter {
 }
 ```
 
-At this point you could have an elasticsearch product on the same node configure logstash to store data with some remote service like http://objectrocket.com/elasticsearch.
+Want to use a [service] (http://objectrocket.com/elasticsearch) for your endpoint?  Just tell it in your config, otherwise we'll go with our default localhost install.
 
 ```
 output {
@@ -77,13 +78,13 @@ output {
 Finally, Kibana interfaces with elasticsearch to perform queries against it creating those gorgeous charts and graphs everyone swoons over.  The defaults roll out executing elasticsearch queries with localhost but everything is availiable to configure from provided attributes should you need them.
 
 ```ruby
-## KIBANA
+## install KIBANA and configure for port 8080, maybe we'll proxy to it from NGINX with some auth_basic?
 kibana 'default' do
   port 8080
 end
 ```
 
-Defaults
+Default installed versions
 ------------
 [elastic] product | version
 ------------ | -------------
