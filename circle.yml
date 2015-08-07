@@ -19,7 +19,7 @@ dependencies:
 
 test:
   override:
-    - "rubocop":
+    - bundle exec rubocop:
         timeout: 120
-    - "foodcritic ." :
+    - bundle exec foodcritic . :
         timeout: 120
