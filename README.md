@@ -42,7 +42,7 @@ logstash_forwarder 'default' do
   }]
 end
 ```
-The clever will note that this allows one to build up a array that finally can be passed as an attribute for [logstash-forwarder] to be configured by for harvesting.
+The clever will note that this allows one to build up an array that finally can be passed as an attribute for [logstash-forwarder] to be configured by for harvesting.
 
 ```
 logstash_forwarder 'default' do
