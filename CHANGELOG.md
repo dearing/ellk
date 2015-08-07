@@ -1,11 +1,9 @@
-# ELLK
-- [releases]
-- [supermarket]
+# ELLK changelog
 
-# Change Log
 ## [unreleased]
 #### Changed
 - cleaned up changelog
+- updated readme
 
 ## [v0.3.3]
 #### Changed
