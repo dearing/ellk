@@ -19,11 +19,11 @@ dependencies:
 
 test:
   override:
-    - rubocop:
+    - bundle exec rubocop:
         timeout: 120
-    - foodcritic .
+    - bundle exec foodcritic .
         timeout: 120
-    - kitchen verify -c
+    - bundle exec kitchen verify -c
         timeout: 3600
   post:
-    - kitchen destroy all -c
+    - bundle exec kitchen destroy all -c
