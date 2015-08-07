@@ -1,36 +1,42 @@
 ELLK Cookbook
 ============
 
-hack friendly: Elasticsearch, Logstash, Logstash-forwarder and Kibana
+Hack friendly, Chef library to manage Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
-*note: expects consumer to install java and handle certs*
-
-Works with anything [ARK](https://github.com/burtlo/ark) and [RUNIT](https://github.com/hw-cookbooks/runit) can handle.
+*note: expects consumer to install java and handle certs and manipulate firewalls*
 
 Requirements
 ------------
-- chef 11+
-- some kind of java
-- see [metadata](https://github.com/dearing/ellk/blob/master/metadata.rb) for complexity
+- [chef] 11+
+- works with anything [ark] and [runit] can handle
+- see [metadata] for complexity
+
+Published
+---------
+- [changelog]
+- [supermarket]
+- [releases]
 
 About
 ------------
-The heavy lifting comes from [ARK](https://github.com/burtlo/ark) and [RUNIT](https://github.com/hw-cookbooks/runit) cookbooks with a focus around being able to pass optional configurations via merged hashsets for templates and environment variable sets.  Meditate on the idea that this library is simply providing a common installation and templating for the 4 projects.  It expects you to do all the tweaking and configuring as needed because attempting to account for all is untenable.  The opinion is then that you would want logstash-forwarder on all nodes communicating to your logstash endpoints.  Logstash-forwarder is overloaded to accept a hash for the logs it will harvert as an attribute making it easy to use in recipes without fumbling with templates. The defaults then expect that logstash would remain resident along all elasticsearch nodes which finally has an interface via kibana.  Beyond this, inheriting templates and customizing the configurations and security is up to you.
+Meditate on the idea that this library is simply providing a common installation and templating for the 4 projects.  It expects you to do all the tweaking and configuring as needed because attempting to account for all is untenable.  The opinion is then that you would want logstash-forwarder on all nodes communicating to your logstash endpoints.  Logstash-forwarder is implemented to accept a hash for the logs it will harvert as a hash making it easy to use in recipes without fumbling with templates. Since the project is written in Go it comes ready to run as a static binary without fuss making it ideal to enable on a variety of platforms.  The logstash endpoints then do work on the forwarded, harvested logs.  Sending the logs with `type` and various `metadata` allows to you to react accordingly parsing and then storing that information at your elasticsearch endpoints.  Finally, Kibana helps interact with that data in a visual manner.
 
-The default installations are:
--   elasticsearch-1.7.0  *requires java*
--   logstash-1.5.3 *requires cert*
--   logstash-forwarder-0.4.0 *requires cert*
--   kibana-4.1.1
-
-You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag is by. See the resource files in the libraries folder for the accepted attributes.
-
-See [ellktest](https://github.com/dearing/ellk/blob/master/test/cookbooks/ellktest/recipes/default.rb) for examples and flexibility..
-
-TODO
+Defaults
 ------------
-see [issues](https://github.com/dearing/ellk/issues)
+[elastic] product | version
+------------ | -------------
+[elasticsearch] | 1.7.0
+[logstash] | 1.5.3
+[logstash-forwarder] | 0.4.0
+[kibana] | 4.1.1
 
+You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag is by. See the resource files in the libraries folder for the accepted attributes.  This allows this library to keep pace with your needs and not be bogged down with upstream asside from [elastic] themselves.
+
+See [ellktest] for examples and flexibility..
+
+TODO & Help Wanted
+------------
+ - see [issues]
 
 Contributing
 ------------
@@ -68,3 +74,18 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+[ark]: https://github.com/burtlo/ark
+[changelog]: https://github.com/dearing/ellk/blob/master/CHANGELOG.md
+[chef]: https://www.chef.io/
+[elastic]: https://www.elastic.co/
+[elasticsearch]: https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+[ellktest]: https://github.com/dearing/ellk/blob/master/test/cookbooks/ellktest/recipes/default.rb
+[issues]: https://github.com/dearing/ellk/issues
+[kibana]: https://github.com/elastic/kibana
+[logstash-forwarder]: https://github.com/elastic/logstash-forwarder
+[logstash]: https://www.elastic.co/guide/en/logstash/current/index.html
+[metadata]: https://github.com/dearing/ellk/blob/master/metadata.rb
+[releases]: https://github.com/dearing/ellk/releases
+[runit]: https://github.com/hw-cookbooks/runit
+[supermarket]: https://supermarket.chef.io/cookbooks/ellk
