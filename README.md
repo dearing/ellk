@@ -8,7 +8,7 @@ ELLK Cookbook
 
 Hack friendly, Chef library to manage Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
-*note: expects consumer to install java and handle certs and manipulate firewalls*
+*note: expects consumer to install java, handle certs and manipulate firewalls*
 
 Requirements
 ------------
