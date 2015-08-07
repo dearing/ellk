@@ -89,7 +89,8 @@ Finally, Kibana interfaces with elasticsearch to perform queries against it crea
 
 ```ruby
 ## install KIBANA and configure for port 8080
-# FIXME: Nginx with some auth_basic
+# !FIXME: Nginx with some auth_basic & expensive certificate from VeriSign
+# !TODO: restrict ips to office and my home networks...
 kibana 'default' do
   port 8080
 end
