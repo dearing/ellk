@@ -4,7 +4,7 @@
 ## https://xkcd.com/378/
 packages = %w( tar nano htop )
 
-## logstash and elasticsearch require java, let's insall it then
+## logstash and elasticsearch require java, let us install it then
 case node[:platform_family]
 when 'debian'
   include_recipe 'apt'
