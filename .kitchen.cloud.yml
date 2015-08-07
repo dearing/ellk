@@ -1,0 +1,7 @@
+---
+driver:
+  name: rackspace
+  flavor_id: performance1-4
+  rackspace_region: IAD
+  server_name: dearing-ci-ellk
+  wait_for: 1200
