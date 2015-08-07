@@ -3,7 +3,7 @@
 ## [unreleased]
 #### Changed
 - cleaned up changelog
-- update readme to better explain the cookbooks philosophy
+- update readme to better explain the cookbook's philosophy
 - demonstate more flexibility with ellktest
 
 ## [v0.3.3]
