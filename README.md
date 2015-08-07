@@ -14,12 +14,57 @@ Requirements
 Published
 ---------
 - [changelog]
-- [supermarket]
 - [releases]
+- [supermarket]
 
 About
 ------------
-Meditate on the idea that this library is simply providing a common installation and templating for the 4 projects.  It expects you to do all the tweaking and configuring as needed because attempting to account for all is untenable.  The opinion is then that you would want logstash-forwarder on all nodes communicating to your logstash endpoints.  Logstash-forwarder is implemented to accept a hash for the logs it will harvert as a hash making it easy to use in recipes without fumbling with templates. Since the project is written in Go it comes ready to run as a static binary without fuss making it ideal to enable on a variety of platforms.  The logstash endpoints then do work on the forwarded, harvested logs.  Sending the logs with `type` and various `metadata` allows to you to react accordingly parsing and then storing that information at your elasticsearch endpoints.  Finally, Kibana helps interact with that data in a visual manner.
+This cookbook provides a modern Chef approach to installing and configuring the four [elastic] products that make up an ELK stack with the company's binary artifacts.  Using [ark] to fetch those remote artifacts and [runit] to handle the service allows us to side step the nuances of various competing package managers, driving down the complexity of this cookbook.  This means faster updates and less angles for bugs and a guard against feature creep.  So the flexibity is that this library won't be upset if you don't use the whole stack.  Call what you need, configure how you like and get back to config management, your way.
+
+The opinion of this design is then that remote systems get a shipper in the form of logstash-forwarder that does nothing but harvest logs and forward them to logstash endpoints.  It is a Go static binary so there is no fuss for remote nodes.  Simply unpack, configure and run.  The `logstash-forwarder` resource is designed to accept a hash that is eventually converted to the json configuration for the program.  This allows you to simply call it in a scope of a node for its logs.
+
+```ruby
+## LOGSTASH-FORWARDER
+logstash_forwarder 'default' do
+  crt_location '/tmp/logstash.crt'
+  logstash_servers ['localhost:5043']
+  files [{ 'paths' => ['/var/log/messages', '/var/log/*log'], 'fields' => { 'type' => 'syslog' } }]
+end
+```
+
+The logstash endpoint should then be configured to react to shipped logs by the type:
+
+```
+filter {
+ if [type] == "syslog" {
+    grok {
+      overwrite => "message"
+      match => [
+        "message",
+        "%{SYSLOGTIMESTAMP:timestamp} %{IPORHOST:host} (?:%{PROG:program}(?:\[%{POSINT:pid}\])?: )?%{GREEDYDATA:message}"
+      ]
+    }
+    syslog_pri { }
+  }
+}
+```
+
+At this point you could have and [elasticsearch] product on the same node or configure logstash to send it remotely such as another node or even a service.
+
+```
+output {
+  elasticsearch { host => localhost}
+  stdout { codec => json }
+}
+```
+Finally, Kibana interfaces with elasticsearch to perform queries against it creating those gorgeous charts and graphs everyone swoons over.  The defaults roll out executing elasticsearch queries with localhost but everything is availiable to configure from provided attributes should you need them.
+
+```ruby
+## KIBANA
+kibana 'default' do
+  port 8080
+end
+```
 
 Defaults
 ------------
@@ -30,9 +75,7 @@ Defaults
 [logstash-forwarder] | 0.4.0
 [kibana] | 4.1.1
 
-You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag is by. See the resource files in the libraries folder for the accepted attributes.  This allows this library to keep pace with your needs and not be bogged down with upstream asside from [elastic] themselves.
-
-See [ellktest] for examples and flexibility..
+You can override any of these by passing the url for the zip/tar package, a checksum (sha256) and a version to tag it by. See the resource files in the libraries folder for the accepted attributes.  See [ellktest] for examples and flexibility..
 
 TODO & Help Wanted
 ------------
