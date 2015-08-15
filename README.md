@@ -44,7 +44,7 @@ end
 ```
 The clever will note that this allows one to build up an array that finally can be passed as an attribute for [logstash-forwarder] to be configured by for harvesting.
 
-```
+```ruby
 logstash_forwarder 'default' do
   crt_location '/tmp/logstash.crt'
   logstash_servers ['localhost:5043']
