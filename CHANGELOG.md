@@ -3,6 +3,7 @@
 
 ## [unreleased]
 #### Changed
+- [mohitsethi] added elasticsearch plugin support
 - added Thorfile with certificate helpers
 
 ## [v0.3.4]
@@ -32,3 +33,5 @@
 [v0.3.1]: https://github.com/dearing/ellk/compare/ac55f121fd95afcd0708c9eaeff04474ceb527fe...v0.3.1
 [releases]: https://github.com/dearing/ellk/releases
 [supermarket]: https://supermarket.chef.io/cookbooks/ellk
+
+[mohitsethi]: https://github.com/mohitsethi
