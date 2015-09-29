@@ -3,7 +3,6 @@ class Chef
     class ElasticsearchPlugin < Chef::Provider::LWRPBase
       use_inline_resources if defined?(use_inline_resources)
       provides :elasticsearch_plugin if Chef::Provider.respond_to?(:provides)
-      service_name = 'elasticsearch'
 
       action :install do
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"

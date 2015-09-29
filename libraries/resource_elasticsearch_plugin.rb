@@ -13,7 +13,6 @@ class Chef
       # Plugin
       attribute :name, kind_of: String
       attribute :path, kind_of: String, default: '/opt/elasticsearch'
-
     end
   end
 end
