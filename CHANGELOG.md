@@ -1,8 +1,9 @@
 # ELLK changelog
 
-
-## [unreleased]
+## [v0.3.5]
 #### Changed
+- update ellktest demo cookbook for permission handling of logs
+- removed pinning of runit 1.5.18
 - [mohitsethi] added elasticsearch plugin support
 - added Thorfile with certificate helpers
 
@@ -26,7 +27,7 @@
 ## [v0.3.1] 
 #### Submission for feedback
 
-[unreleased]: https://github.com/dearing/ellk/compare/v0.3.4...HEAD
+[v0.3.5]: https://github.com/dearing/ellk/compare/v0.3.4...v0.3.5
 [v0.3.4]: https://github.com/dearing/ellk/compare/v0.3.3...v0.3.4
 [v0.3.3]: https://github.com/dearing/ellk/compare/v0.3.2...v0.3.3
 [v0.3.2]: https://github.com/dearing/ellk/compare/v0.3.1...v0.3.2

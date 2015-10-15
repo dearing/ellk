@@ -21,6 +21,10 @@ Published
 - [releases]
 - [supermarket]
 
+A note on RUNIT
+---------------
+Runit has gone through some design changes and the releases between 1.5.18 and 1.7 would create inconsistent responses when polling the state of a service.  In order to prevent this from breaking integration tests and create false problems for consumers, I pinned this cookbook to v1.5.18. Since v0.3.5 I have released this pinning and advice the consumer to decide which version of runit they want to run.
+
 About
 ------------
 This cookbook provides a modern Chef approach to installing and configuring the four [elastic] products that make up an ELK stack with the company's binary artifacts.  Using [ark] to fetch those remote artifacts and [runit] to handle the service allows us to side step the nuanced vulgarity of competing package managers, driving down the complexity of this cookbook.  This means faster updates, less angles for bugs and a guard against feature creep.  So the flexibity is that this library won't be upset if you don't use the whole stack or any combination within.  Call what you need, configure how you like and get back to [#chefops], your way.
