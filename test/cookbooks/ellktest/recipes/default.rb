@@ -46,10 +46,12 @@ secrets = Chef::DataBagItem.load('secrets', 'logstash')
 logstash_key = Base64.decode64(secrets['key'])
 file '/tmp/logstash.key' do
   content logstash_key
+  sensitive true
 end
 logstash_crt = Base64.decode64(secrets['certificate'])
 file '/tmp/logstash.crt' do
   content logstash_crt
+  sensitive true
 end
 
 # install ELASTICSEARCH 1.7.1 instead of the default of 1.7.0
@@ -97,6 +99,15 @@ logs <<
       'chef_env' => 'prod'
     }
   }
+
+logs.each do |conf|
+  conf['paths'].each do |log|
+    file log do
+      group 'logstash'
+      ignore_failure true
+    end
+  end
+end
 
 ## Install the forwarder and configure it to ship everything in logs up to this point.
 logstash_forwarder 'default' do
