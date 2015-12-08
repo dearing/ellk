@@ -1,5 +1,9 @@
 # ELLK changelog
 
+## [v0.3.6]
+#### Changed
+- remove Nginx filter from logstash.conf.erb
+
 ## [v0.3.5]
 #### Changed
 - update ellktest demo cookbook for permission handling of logs
