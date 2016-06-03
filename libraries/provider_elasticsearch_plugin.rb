@@ -7,14 +7,16 @@ class Chef
       action :install do
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
         execute "install plugin #{new_resource.name}" do
-          command "#{home_dir}/bin/plugin -install #{new_resource.name}"
+          command "#{home_dir}/bin/plugin install #{new_resource.name}"
+          not_if "#{home_dir}/bin/plugin list |grep #{new_resource.name}"
         end
       end
 
       action :remove do
         home_dir = "#{new_resource.path}/elasticsearch-#{new_resource.version}"
         execute "install plugin #{new_resource.name}" do
-          command "#{home_dir}/bin/plugin -remove #{new_resource.name}"
+          command "#{home_dir}/bin/plugin remove #{new_resource.name}"
+          not_if "#{home_dir}/bin/plugin list |grep #{new_resource.name}"
         end
       end
     end

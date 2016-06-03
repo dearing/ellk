@@ -62,6 +62,10 @@ elasticsearch 'default' do
   checksum '86a0c20eea6ef55b14345bff5adf896e6332437b19180c4582a346394abde019'
   url 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.1.tar.gz'
 end
+# install elasticsearch_plugin (license)
+elasticsearch_plugin 'license' do
+  version '1.7.1'
+end
 # We'll go ahead and ship elasticsearch logs, too
 logs <<
   {
