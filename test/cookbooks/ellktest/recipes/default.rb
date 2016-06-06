@@ -11,11 +11,11 @@ when 'debian'
   packages << 'openjdk-7-jre-headless'
 when 'rhel'
   include_recipe 'yum'
-  if node[:platform_version].to_i == 5
-    packages << 'java-1.7.0-openjdk'
-  else
-    packages << 'java-1.8.0-openjdk-headless'
-  end
+  packages << if node[:platform_version].to_i == 5
+                'java-1.7.0-openjdk'
+              else
+                'java-1.8.0-openjdk-headless'
+              end
 end
 
 packages.each do |pkg|
