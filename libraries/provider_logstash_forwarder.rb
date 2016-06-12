@@ -69,9 +69,7 @@ class Chef
           action :stop
         end
 
-        ['/opt/logstash-forwarder',
-         '/etc/service/logstash-forwarder'
-        ].each do |dir|
+        ['/opt/logstash-forwarder', '/etc/service/logstash-forwarder'].each do |dir|
           directory dir do
             recursive true
             action :delete

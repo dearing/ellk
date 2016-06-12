@@ -11,11 +11,11 @@ when 'debian'
   packages << 'openjdk-7-jre-headless'
 when 'rhel'
   include_recipe 'yum'
-  if node[:platform_version].to_i == 5
-    packages << 'java-1.7.0-openjdk'
-  else
-    packages << 'java-1.8.0-openjdk-headless'
-  end
+  packages << if node[:platform_version].to_i == 5
+                'java-1.7.0-openjdk'
+              else
+                'java-1.8.0-openjdk-headless'
+              end
 end
 
 packages.each do |pkg|
@@ -61,6 +61,10 @@ elasticsearch 'default' do
   version '1.7.1'
   checksum '86a0c20eea6ef55b14345bff5adf896e6332437b19180c4582a346394abde019'
   url 'https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.1.tar.gz'
+end
+# install elasticsearch_plugin (license)
+elasticsearch_plugin 'license' do
+  version '1.7.1'
 end
 # We'll go ahead and ship elasticsearch logs, too
 logs <<
