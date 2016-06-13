@@ -3,8 +3,14 @@ build:
   environment:
     RACKSPACE_USERNAME: $$RACKSPACE_USERNAME
     RACKSPACE_API_KEY: $$RACKSPACE_API_KEY
+  cache:
+    mount:
+      - .gem
+      - .berkshelf
   commands:
     - bundle install
-    - rubocop
-    - foodcritic .
-    - kitchen verify -c
+    - bundle exec rubocop
+    - bundle exec foodcritic .
+    - bundle exec berks install
+    - bundle exec kitchen verify -c
+
