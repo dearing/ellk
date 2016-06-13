@@ -1,5 +1,5 @@
 build:
-  image: ruby:latest
+  image: ruby:2.2.5
   environment:
     RACKSPACE_USERNAME: $$RACKSPACE_USERNAME
     RACKSPACE_API_KEY: $$RACKSPACE_API_KEY
