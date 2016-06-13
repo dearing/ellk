@@ -1,0 +1,10 @@
+build:
+  image: ruby:latest
+  environment:
+    RACKSPACE_USERNAME: $$RACKSPACE_USERNAME
+    RACKSPACE_API_KEY: $$RACKSPACE_API_KEY
+  commands:
+    - bundle install
+    - rubocop
+    - foodcritic .
+    - kitchen verify -c
