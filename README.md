@@ -3,7 +3,7 @@ ELLK Cookbook
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
-[![Cookbook Version](https://img.shields.io/cookbook/v/ELLk.svg)](https://supermarket.chef.io/cookbooks/ellk) [![Circle CI](https://circleci.com/gh/dearing/ellk/tree/master.svg?style=svg)](https://circleci.com/gh/dearing/ellk/tree/master)
+[![Cookbook Version](https://img.shields.io/cookbook/v/ELLk.svg)](https://supermarket.chef.io/cookbooks/ellk) [![Build Status](https://drone.dearing.tech/api/badges/dearing/ellk/status.svg)](https://drone.dearing.tech/dearing/ellk)](https://circleci.com/gh/dearing/ellk/tree/master)
 
 Hack friendly, Chef library to manage Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
@@ -38,10 +38,10 @@ logstash_forwarder 'default' do
   logstash_servers ['localhost:5043']
   files [{
   'paths' => ['/var/log/messages', '/var/log/*log'],
-    'fields' => { 
-      'type' => 'syslog', 
-      'chef_node' => node.name, 
-      'chef_env' => node.chef_environment 
+    'fields' => {
+      'type' => 'syslog',
+      'chef_node' => node.name,
+      'chef_env' => node.chef_environment
     }
   }]
 end
