@@ -1,16 +1,12 @@
 build:
-  image: ruby:2.2.5
+  image: chef-testing
   environment:
     RACKSPACE_USERNAME: $$RACKSPACE_USERNAME
     RACKSPACE_API_KEY: $$RACKSPACE_API_KEY
-  cache:
-    mount:
-      - .gem
-      - .berkshelf
   commands:
-    - bundle install
-    - bundle exec rubocop
-    - bundle exec foodcritic .
-    - bundle exec berks install
-    - bundle exec kitchen verify -c
-
+    - ls -lhRa /drone
+    - ssh-keygen -f ~/.ssh/id_rsa -t rsa -N ''
+    - chef exec rubocop
+    - chef exec foodcritic .
+    - chef exec berks install
+    - kitchen test -c -l warn
