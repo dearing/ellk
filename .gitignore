@@ -17,3 +17,5 @@ bin/*
 .bundle/*
 .kitchen
 logstash.*
+
+.drone.sec.yml
