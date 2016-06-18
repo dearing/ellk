@@ -3,7 +3,8 @@ ELLK Cookbook
 
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
-[![Cookbook Version](https://img.shields.io/cookbook/v/ELLk.svg)](https://supermarket.chef.io/cookbooks/ellk) [![Build Status](https://drone.dearing.tech/api/badges/dearing/ellk/status.svg)](https://drone.dearing.tech/dearing/ellk)
+[![Cookbook Version](https://img.shields.io/cookbook/v/ELLk.svg)](https://supermarket.chef.io/cookbooks/ellk)  [![Build 
+Status](https://drone.dearing.tech/api/badges/dearing/ellk/status.svg)](https://drone.dearing.tech/dearing/ellk)
 
 Hack friendly, Chef library to manage Elasticsearch, Logstash, Logstash-forwarder and Kibana
 
